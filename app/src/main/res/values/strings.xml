@@ -1,5 +1,11 @@
 <resources>
-    <string name="app_name">attsystem</string>
+    <string name="app_name">Система учета рабочего времени</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="name">Name</string>
+    <string name="required">Необходимо заполнить*</string>
+    <string name="uid">Uid</string>
+    <string name="att_title">Посещаемость сотрудников</string>
+    <string name="persons_title">Сотрудники</string>
+    <string name="add_person_title">Добавить сотрудника</string>
 </resources>

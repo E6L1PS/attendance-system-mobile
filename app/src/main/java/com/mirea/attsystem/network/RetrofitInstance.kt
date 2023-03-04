@@ -25,7 +25,15 @@ class RetrofitInstance {
 
         }
 
-        val api by lazy {
+        val attendanceApi: AttendanceController by lazy {
+            retrofit.create(AttendanceController::class.java)
+        }
+
+        val personApi: PersonController by lazy {
+            retrofit.create(PersonController::class.java)
+        }
+
+        val gateApi: PersonController by lazy {
             retrofit.create(PersonController::class.java)
         }
     }

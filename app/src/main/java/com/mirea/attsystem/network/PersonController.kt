@@ -8,7 +8,7 @@ import retrofit2.http.GET
 interface PersonController {
 
     @GET("./person/all")
-    suspend fun persons(): Response<List<Person>>
+    suspend fun getPersons(): Response<List<Person>>
 
 
 }

@@ -44,6 +44,11 @@ class PersonsAdapter : RecyclerView.Adapter<PersonsAdapter.PersonsVH>() {
             tvUid.text = person.uid.toString()
             tvName.text = person.name
             tvGender.text = person.gender.toString()
+
+        }
+        holder.itemView.setOnClickListener {
+
         }
     }
+
 }
