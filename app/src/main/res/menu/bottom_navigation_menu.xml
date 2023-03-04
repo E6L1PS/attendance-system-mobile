@@ -1,14 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
-<menu xmlns:android="http://schemas.android.com/apk/res/android">
+<menu xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
     <item
         android:id="@+id/navigation_start"
-        android:icon="@drawable/ic_launcher_background"
-        android:title="Start" />
+        android:icon="@drawable/ic_ac_info"
+        android:title="Attendances"
+        app:showAsAction="ifRoom" />
 
     <item
         android:id="@+id/navigation_person"
-        android:icon="@drawable/ic_launcher_background"
-        android:title="Persons" />
+        android:icon="@drawable/ic_va_person"
+        android:title="Persons"
+        app:showAsAction="ifRoom"/>
 
 
 </menu>

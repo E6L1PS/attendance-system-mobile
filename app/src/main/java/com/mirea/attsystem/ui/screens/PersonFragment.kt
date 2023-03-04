@@ -12,12 +12,14 @@ import com.mirea.attsystem.MainActivity
 import com.mirea.attsystem.R
 import com.mirea.attsystem.adapters.PersonsAdapter
 import com.mirea.attsystem.databinding.FragmentPersonBinding
+import com.mirea.attsystem.util.MAIN_ACTIVITY
 import com.mirea.attsystem.util.Resource
 
 class PersonFragment : Fragment(R.layout.fragment_person) {
-    lateinit var binding: FragmentPersonBinding
-    lateinit var viewModel: PersonsViewModel
-    lateinit var personAdapter: PersonsAdapter
+
+    private lateinit var binding: FragmentPersonBinding
+    private lateinit var viewModel: PersonsViewModel
+    private lateinit var personAdapter: PersonsAdapter
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -25,8 +27,7 @@ class PersonFragment : Fragment(R.layout.fragment_person) {
     ): View? {
         binding = FragmentPersonBinding.inflate(inflater, container, false)
         val view = binding.root
-        viewModel = (activity as MainActivity).viewModel
-
+        viewModel = MAIN_ACTIVITY.personsVM
         setupRecyclerView()
 
         viewModel.persons.observe(viewLifecycleOwner, Observer { response ->
@@ -50,7 +51,16 @@ class PersonFragment : Fragment(R.layout.fragment_person) {
             }
         })
 
+
         return view
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)/*
+        MAIN_ACTIVITY.supportActionBar?.title = "Сотрудники"*/
+        binding.button2.setOnClickListener {
+            MAIN_ACTIVITY.navController.navigate(R.id.action_navigation_person_to_navigation_add_person)
+        }
     }
 
     private fun hideProgressBar() {

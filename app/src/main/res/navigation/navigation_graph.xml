@@ -6,13 +6,24 @@
     app:startDestination="@id/navigation_start">
 
     <fragment
-        android:id="@+id/navigation_person"
-        android:name="com.mirea.attsystem.ui.screens.PersonFragment"
-        android:label="fragment_person"
-        tools:layout="@layout/fragment_person"/>
-    <fragment
         android:id="@+id/navigation_start"
         android:name="com.mirea.attsystem.ui.screens.StartFragment"
-        android:label="fragment_start"
+        android:label="@string/att_title"
         tools:layout="@layout/fragment_start"/>
+
+    <fragment
+        android:id="@+id/navigation_person"
+        android:name="com.mirea.attsystem.ui.screens.PersonFragment"
+        android:label="@string/persons_title"
+        tools:layout="@layout/fragment_person">
+        <action
+            android:id="@+id/action_navigation_person_to_navigation_add_person"
+            app:destination="@id/navigation_add_person" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/navigation_add_person"
+        android:name="com.mirea.attsystem.ui.screens.AddPersonFragment"
+        android:label="@string/add_person_title"
+        tools:layout="@layout/fragment_add_person" />
 </navigation>

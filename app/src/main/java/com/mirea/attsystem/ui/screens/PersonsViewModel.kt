@@ -9,7 +9,7 @@ import com.mirea.attsystem.util.Resource
 import kotlinx.coroutines.launch
 
 class PersonsViewModel(
-    val personRepository: PersonRepository
+    private val personRepository: PersonRepository
 ) : ViewModel() {
 
     init {
@@ -18,7 +18,7 @@ class PersonsViewModel(
 
     val persons: MutableLiveData<Resource<List<Person>>> = MutableLiveData()
 
-    fun getPersons() = viewModelScope.launch {
+    private fun getPersons() = viewModelScope.launch {
 //        persons.postValue(Resource.Loading())
         val response = personRepository.getPersons()
         if (response.isSuccessful) {
@@ -29,5 +29,7 @@ class PersonsViewModel(
             persons.postValue(Resource.Error(response.message()))
         }
     }
+
+
 
 }
