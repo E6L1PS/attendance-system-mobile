@@ -27,9 +27,14 @@ class StartFragment : Fragment(R.layout.fragment_start) {
     ): View? {
         binding = FragmentStartBinding.inflate(inflater, container, false)
         val view = binding.root
-        viewModel = MAIN_ACTIVITY.attendancesVM
-        /*MAIN_ACTIVITY.supportActionBar?.title = "Посещаемость сотрудников"*/
 
+
+        return view
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        viewModel = MAIN_ACTIVITY.attendancesVM
 
         setupRecyclerView()
 
@@ -53,8 +58,6 @@ class StartFragment : Fragment(R.layout.fragment_start) {
                 }
             }
         })
-
-        return view
     }
 
     private fun hideProgressBar() {

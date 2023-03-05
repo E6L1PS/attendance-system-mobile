@@ -7,9 +7,10 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
+import androidx.navigation.Navigation
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.mirea.attsystem.MainActivity
 import com.mirea.attsystem.R
+import com.mirea.attsystem.adapters.PersonActionListener
 import com.mirea.attsystem.adapters.PersonsAdapter
 import com.mirea.attsystem.databinding.FragmentPersonBinding
 import com.mirea.attsystem.util.MAIN_ACTIVITY
@@ -26,10 +27,36 @@ class PersonFragment : Fragment(R.layout.fragment_person) {
         savedInstanceState: Bundle?
     ): View? {
         binding = FragmentPersonBinding.inflate(inflater, container, false)
-        val view = binding.root
-        viewModel = MAIN_ACTIVITY.personsVM
-        setupRecyclerView()
+        return binding.root
+    }
 
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        binding.bAdd.setOnClickListener {
+            Navigation.findNavController(view)
+                .navigate(R.id.action_navigation_person_to_navigation_add_person)
+        }
+
+
+        viewModel = MAIN_ACTIVITY.personsVM
+        setupRecyclerView(view)
+
+        call()
+
+        val swipe = binding.srlPersons
+        swipe.setOnRefreshListener {
+            viewModel.getPersons()
+            swipe.isRefreshing = false
+        }
+
+        /* binding.button2.setOnClickListener {
+             MAIN_ACTIVITY.replaceFragment(AddPersonFragment())
+            // MAIN_ACTIVITY.navController.navigate(R.id.action_navigation_person_to_navigation_add_person)
+         }*/
+    }
+
+    fun call() {
         viewModel.persons.observe(viewLifecycleOwner, Observer { response ->
 
             when (response) {
@@ -50,29 +77,28 @@ class PersonFragment : Fragment(R.layout.fragment_person) {
                 }
             }
         })
-
-
-        return view
-    }
-
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)/*
-        MAIN_ACTIVITY.supportActionBar?.title = "Сотрудники"*/
-        binding.button2.setOnClickListener {
-            MAIN_ACTIVITY.navController.navigate(R.id.action_navigation_person_to_navigation_add_person)
-        }
     }
 
     private fun hideProgressBar() {
-        binding.progressBar2.visibility = View.INVISIBLE
+        binding.progressBar.visibility = View.INVISIBLE
     }
 
     private fun showProgressBar() {
-        binding.progressBar2.visibility = View.VISIBLE
+        binding.progressBar.visibility = View.VISIBLE
     }
 
-    private fun setupRecyclerView() {
-        personAdapter = PersonsAdapter()
+    private fun setupRecyclerView(view: View) {
+        personAdapter = PersonsAdapter(object : PersonActionListener {
+            override fun onPersonDelete(uid: Long) {
+                viewModel.deletePerson(uid)
+            }
+
+            override fun onPersonUpdate() {
+                Navigation.findNavController(view)
+                    .navigate(R.id.navigation_edit_person)
+            }
+
+        })
         binding.rvPersons.apply {
             layoutManager = LinearLayoutManager(activity)
             adapter = personAdapter
