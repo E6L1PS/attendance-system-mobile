@@ -1,14 +1,25 @@
 package com.mirea.attsystem.adapters
 
+import android.util.Log
 import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.AsyncListDiffer
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
+import com.mirea.attsystem.R
 import com.mirea.attsystem.databinding.ItemPersonBinding
 import com.mirea.attsystem.model.Person
 
-class PersonsAdapter : RecyclerView.Adapter<PersonsAdapter.PersonsVH>() {
+
+interface PersonActionListener {
+
+    fun onPersonDelete(uid: Long)
+
+    fun onPersonUpdate()
+}
+
+class PersonsAdapter(private val personActionListener: PersonActionListener) : RecyclerView.Adapter<PersonsAdapter.PersonsVH>(), View.OnClickListener {
 
     inner class PersonsVH(val binding: ItemPersonBinding) : RecyclerView.ViewHolder(binding.root)
 
@@ -25,13 +36,12 @@ class PersonsAdapter : RecyclerView.Adapter<PersonsAdapter.PersonsVH>() {
     val differ = AsyncListDiffer(this, differCallback)
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): PersonsVH {
-        return PersonsVH(
-            ItemPersonBinding.inflate(
-                LayoutInflater.from(parent.context),
-                parent,
-                false
-            )
-        )
+        val binding = ItemPersonBinding.inflate(LayoutInflater.from(parent.context), parent, false)
+
+        binding.root.setOnClickListener(this)
+        binding.icMore.setOnClickListener(this)
+
+        return PersonsVH(binding)
     }
 
     override fun getItemCount(): Int {
@@ -41,13 +51,30 @@ class PersonsAdapter : RecyclerView.Adapter<PersonsAdapter.PersonsVH>() {
     override fun onBindViewHolder(holder: PersonsVH, position: Int) {
         val person = differ.currentList[position]
         with(holder.binding) {
+            holder.itemView.tag = person
+            icMore.tag = person
             tvUid.text = person.uid.toString()
             tvName.text = person.name
+            tvLastName.text = person.lastName
+            tvJobTitle.text = person.jobTitle
             tvGender.text = person.gender.toString()
-
         }
-        holder.itemView.setOnClickListener {
+    }
 
+    override fun onClick(v: View) {
+        val person = v.tag as Person
+
+        when (v.id) {
+            R.id.ic_more -> {
+                Log.d("uidOnClickMore", person.uid.toString())
+                personActionListener.onPersonDelete(person.uid)
+
+            }
+            else -> {
+                Log.d("", person.uid.toString())
+                personActionListener.onPersonUpdate()
+
+            }
         }
     }
 

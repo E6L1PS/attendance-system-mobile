@@ -23,29 +23,83 @@
             android:id="@+id/iv_person"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_margin="10dp"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginEnd="10dp"
+            android:layout_marginBottom="10dp"
             android:cropToPadding="true"
             android:scaleType="centerCrop"
             android:src="@drawable/ic_launcher_foreground" />
 
+
+
         <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:id="@+id/info_layout"
+            android:layout_width="244dp"
+            android:layout_height="wrap_content"
             android:layout_alignTop="@id/iv_person"
             android:layout_alignBottom="@id/iv_person"
+            android:layout_marginBottom="0dp"
             android:layout_toEndOf="@id/iv_person"
             android:orientation="vertical">
 
-            <TextView
-                android:id="@+id/tvName"
-                android:layout_width="wrap_content"
+            <LinearLayout
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:includeFontPadding="false"
-                android:textColor="@color/main_black"
-                android:textSize="20sp"
-                android:textStyle="bold"
-                tools:text="Name" />
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/tvLastName"
+                    android:layout_width="128dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:includeFontPadding="false"
+                    android:textColor="@color/main_black"
+                    android:textSize="20sp"
+                    android:textStyle="bold"
+                    tools:text="LastName" />
+
+                <TextView
+                    android:id="@+id/tvName"
+                    android:layout_width="91dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:includeFontPadding="false"
+                    android:textColor="@color/main_black"
+                    android:textSize="20sp"
+                    android:textStyle="bold"
+                    tools:text="Name" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:includeFontPadding="false"
+                    android:text="@string/job_title"
+                    android:textColor="@color/main_black"
+                    android:textSize="20sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/tvJobTitle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:includeFontPadding="false"
+                    android:textColor="@color/main_black"
+                    android:textSize="20sp"
+                    android:textStyle="bold"
+                    tools:text="JobTitle" />
+
+            </LinearLayout>
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -56,10 +110,9 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:paddingStart="20dp"
-                    android:text="uid:"
+                    android:text="@string/uid"
                     android:textColor="@color/main_black"
-                    android:textSize="18sp"
-                    tools:text="uid" />
+                    android:textSize="18sp" />
 
                 <TextView
                     android:id="@+id/tvUid"
@@ -80,10 +133,9 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:paddingStart="20dp"
-                    android:text="gender:"
-                    android:textSize="18sp"
+                    android:text="@string/gender"
                     android:textColor="@color/main_black"
-                    tools:text="gender" />
+                    android:textSize="18sp" />
 
                 <TextView
                     android:id="@+id/tvGender"
@@ -95,6 +147,22 @@
             </LinearLayout>
 
         </LinearLayout>
+
+        <ImageView
+            android:id="@+id/ic_more"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:layout_alignRight="@id/info_layout"
+            android:layout_alignTop="@id/iv_person"
+            android:layout_alignBottom="@id/iv_person"
+            app:srcCompat="@drawable/baseline_more_vert_24"
+            android:clickable="true"
+            android:focusable="true"
+            android:foreground="?attr/selectableItemBackground"/>
+
+
+
     </RelativeLayout>
 
 

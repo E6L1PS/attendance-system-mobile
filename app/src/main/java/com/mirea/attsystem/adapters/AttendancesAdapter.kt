@@ -1,6 +1,7 @@
 package com.mirea.attsystem.adapters
 
 import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.AsyncListDiffer
 import androidx.recyclerview.widget.DiffUtil
@@ -9,7 +10,9 @@ import com.mirea.attsystem.databinding.FragmentStartBinding
 import com.mirea.attsystem.databinding.ItemAttendanceBinding
 import com.mirea.attsystem.model.Attendance
 
-class AttendancesAdapter : RecyclerView.Adapter<AttendancesAdapter.AttendancesVH>() {
+
+
+class AttendancesAdapter : RecyclerView.Adapter<AttendancesAdapter.AttendancesVH>(), View.OnClickListener {
 
     inner class AttendancesVH(val binding: ItemAttendanceBinding) : RecyclerView.ViewHolder(binding.root)
 
@@ -44,6 +47,13 @@ class AttendancesAdapter : RecyclerView.Adapter<AttendancesAdapter.AttendancesVH
         with(holder.binding) {
             tvDate.text = attendance.date
             tvPerson.text = attendance.person.name
+
         }
+
+
+    }
+
+    override fun onClick(p0: View?) {
+
     }
 }

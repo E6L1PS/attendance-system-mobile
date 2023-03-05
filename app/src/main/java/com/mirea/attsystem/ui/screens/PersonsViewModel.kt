@@ -18,7 +18,15 @@ class PersonsViewModel(
 
     val persons: MutableLiveData<Resource<List<Person>>> = MutableLiveData()
 
-    private fun getPersons() = viewModelScope.launch {
+    val person: MutableLiveData<Person> = MutableLiveData()
+
+    fun addPerson(person: Person) = viewModelScope.launch {
+        personRepository.addPerson(person)
+        getPersons()
+        /* person.value?.let { personRepository.addPerson(it) }*/
+    }
+
+    fun getPersons() = viewModelScope.launch {
 //        persons.postValue(Resource.Loading())
         val response = personRepository.getPersons()
         if (response.isSuccessful) {
@@ -30,6 +38,23 @@ class PersonsViewModel(
         }
     }
 
+    fun deletePerson(uid: Long) = viewModelScope.launch {
+        personRepository.deletePerson(uid)
+        getPersons()
+    }
+
+    fun updatePerson(person: Person) = viewModelScope.launch {
+        personRepository.updatePerson(person)
+        getPersons()
+    }
+
+/*
+
+    fun getAllPersons(): MutableLiveData<Resource<List<Person>>> {
+        getPersons()
+        return persons
+    }
+*/
 
 
 }
