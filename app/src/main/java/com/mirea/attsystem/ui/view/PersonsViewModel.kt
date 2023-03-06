@@ -1,10 +1,10 @@
-package com.mirea.attsystem.ui.screens
+package com.mirea.attsystem.ui.view
 
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.mirea.attsystem.model.Person
-import com.mirea.attsystem.repository.PersonRepository
+import com.mirea.attsystem.data.repository.PersonRepository
 import com.mirea.attsystem.util.Resource
 import kotlinx.coroutines.launch
 

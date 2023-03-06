@@ -1,5 +1,7 @@
-package com.mirea.attsystem.network
+package com.mirea.attsystem.data.network
 
+import com.mirea.attsystem.data.network.api.AttendanceApi
+import com.mirea.attsystem.data.network.api.PersonApi
 import com.mirea.attsystem.util.Constants.Companion.BASE_URL
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
@@ -25,16 +27,16 @@ class RetrofitInstance {
 
         }
 
-        val attendanceApi: AttendanceController by lazy {
-            retrofit.create(AttendanceController::class.java)
+        val attendanceApi: AttendanceApi by lazy {
+            retrofit.create(AttendanceApi::class.java)
         }
 
-        val personApi: PersonController by lazy {
-            retrofit.create(PersonController::class.java)
+        val personApi: PersonApi by lazy {
+            retrofit.create(PersonApi::class.java)
         }
 
-        val gateApi: PersonController by lazy {
-            retrofit.create(PersonController::class.java)
+        val gateApi: PersonApi by lazy {
+            retrofit.create(PersonApi::class.java)
         }
     }
 }

@@ -12,4 +12,9 @@
     <color name="main_black">#222325</color>
     <color name="ic_c">#598096</color>
     <color name="red">#FF5555</color>
+
+
+    <color name="in">#E9FF9B</color>
+    <color name="out">#FFB2B2</color>
+
 </resources>

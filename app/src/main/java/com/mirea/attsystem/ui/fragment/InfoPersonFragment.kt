@@ -1,4 +1,4 @@
-package com.mirea.attsystem.ui.screens
+package com.mirea.attsystem.ui.fragment
 
 import android.os.Bundle
 import android.view.LayoutInflater

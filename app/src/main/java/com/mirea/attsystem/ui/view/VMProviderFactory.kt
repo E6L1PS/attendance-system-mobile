@@ -1,10 +1,10 @@
-package com.mirea.attsystem.ui.screens
+package com.mirea.attsystem.ui.view
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
-import com.mirea.attsystem.repository.AttendanceRepository
-import com.mirea.attsystem.repository.PersonRepository
-import com.mirea.attsystem.repository.Repository
+import com.mirea.attsystem.data.repository.AttendanceRepository
+import com.mirea.attsystem.data.repository.PersonRepository
+import com.mirea.attsystem.data.repository.Repository
 
 class VMProviderFactory(
     private val repository: Repository

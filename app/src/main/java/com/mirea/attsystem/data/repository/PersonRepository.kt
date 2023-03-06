@@ -1,7 +1,7 @@
-package com.mirea.attsystem.repository
+package com.mirea.attsystem.data.repository
 
 import com.mirea.attsystem.model.Person
-import com.mirea.attsystem.network.RetrofitInstance
+import com.mirea.attsystem.data.network.RetrofitInstance
 
 class PersonRepository : Repository {
     suspend fun getPersons() = RetrofitInstance.personApi.getPersons()

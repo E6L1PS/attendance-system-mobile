@@ -1,4 +1,4 @@
-package com.mirea.attsystem.ui.screens
+package com.mirea.attsystem.ui.fragment
 
 import android.os.Bundle
 import android.util.Log
@@ -8,11 +8,10 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.mirea.attsystem.MainActivity
 import com.mirea.attsystem.R
-import com.mirea.attsystem.adapters.AttendancesAdapter
-import com.mirea.attsystem.adapters.PersonsAdapter
+import com.mirea.attsystem.ui.adapter.AttendancesAdapter
 import com.mirea.attsystem.databinding.FragmentStartBinding
+import com.mirea.attsystem.ui.view.AttendancesViewModel
 import com.mirea.attsystem.util.MAIN_ACTIVITY
 import com.mirea.attsystem.util.Resource
 
@@ -37,6 +36,13 @@ class StartFragment : Fragment(R.layout.fragment_start) {
         viewModel = MAIN_ACTIVITY.attendancesVM
 
         setupRecyclerView()
+
+        val swipe = binding.srlAttendances
+        swipe.setOnRefreshListener {
+            viewModel.getAttendances()
+            swipe.isRefreshing = false
+        }
+
 
         viewModel.attendances.observe(viewLifecycleOwner, Observer { response ->
 

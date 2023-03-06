@@ -1,6 +1,6 @@
 package com.mirea.attsystem.util
 
-import com.mirea.attsystem.MainActivity
+import com.mirea.attsystem.ui.MainActivity
 
 
 lateinit var MAIN_ACTIVITY: MainActivity

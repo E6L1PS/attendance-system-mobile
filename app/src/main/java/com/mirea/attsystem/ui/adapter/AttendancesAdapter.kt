@@ -1,12 +1,14 @@
-package com.mirea.attsystem.adapters
+package com.mirea.attsystem.ui.adapter
 
+import android.annotation.SuppressLint
+import android.graphics.Color
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.AsyncListDiffer
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
-import com.mirea.attsystem.databinding.FragmentStartBinding
+import com.mirea.attsystem.R
 import com.mirea.attsystem.databinding.ItemAttendanceBinding
 import com.mirea.attsystem.model.Attendance
 
@@ -28,7 +30,7 @@ class AttendancesAdapter : RecyclerView.Adapter<AttendancesAdapter.AttendancesVH
 
     val differ = AsyncListDiffer(this, differCallback)
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): AttendancesAdapter.AttendancesVH {
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): AttendancesVH {
         return AttendancesVH(
             ItemAttendanceBinding.inflate(
                 LayoutInflater.from(parent.context),
@@ -42,12 +44,18 @@ class AttendancesAdapter : RecyclerView.Adapter<AttendancesAdapter.AttendancesVH
         return differ.currentList.size
     }
 
-    override fun onBindViewHolder(holder: AttendancesAdapter.AttendancesVH, position: Int) {
+    @SuppressLint("ResourceAsColor")
+    override fun onBindViewHolder(holder: AttendancesVH, position: Int) {
         val attendance = differ.currentList[position]
         with(holder.binding) {
             tvDate.text = attendance.date
             tvPerson.text = attendance.person.name
+        }
 
+        if (attendance.status) {
+            holder.itemView.setBackgroundColor(Color.parseColor("#E9FF9B"))
+        } else {
+            holder.itemView.setBackgroundColor(Color.parseColor("#FFB2B2"))
         }
 
 

@@ -1,4 +1,4 @@
-package com.mirea.attsystem.ui.screens
+package com.mirea.attsystem.ui.fragment
 
 import android.os.Bundle
 import android.util.Log
@@ -10,9 +10,10 @@ import androidx.lifecycle.Observer
 import androidx.navigation.Navigation
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.mirea.attsystem.R
-import com.mirea.attsystem.adapters.PersonActionListener
-import com.mirea.attsystem.adapters.PersonsAdapter
+import com.mirea.attsystem.ui.adapter.PersonActionListener
+import com.mirea.attsystem.ui.adapter.PersonsAdapter
 import com.mirea.attsystem.databinding.FragmentPersonBinding
+import com.mirea.attsystem.ui.view.PersonsViewModel
 import com.mirea.attsystem.util.MAIN_ACTIVITY
 import com.mirea.attsystem.util.Resource
 

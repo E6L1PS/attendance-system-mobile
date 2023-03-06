@@ -1,23 +1,22 @@
-package com.mirea.attsystem.network
+package com.mirea.attsystem.data.network.api
 
 
 import com.mirea.attsystem.model.Person
 import retrofit2.Response
 import retrofit2.http.*
 
-interface PersonController {
+interface PersonApi {
 
-    @GET("./person/all")
+    @GET("person/all")
     suspend fun getPersons(): Response<List<Person>>
 
-    @POST("./person/add")
+    @POST("person/add")
     suspend fun addPerson(@Body person: Person)
 
-    @DELETE("http://192.168.0.106:8080/person/delete/{uid}")
+    @DELETE("person/delete/{uid}")
     suspend fun deletePerson(@Path("uid") uid: Long)
 
-
-    @DELETE("http://192.168.0.106:8080/person/delete/{uid}")
+    @PUT("person/delete/{uid}")
     suspend fun updatePerson(@Body person: Person)
 
 }

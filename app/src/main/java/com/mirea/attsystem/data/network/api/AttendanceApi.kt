@@ -1,20 +1,19 @@
-package com.mirea.attsystem.network
+package com.mirea.attsystem.data.network.api
 
 import com.mirea.attsystem.model.Attendance
 import retrofit2.Response
 import retrofit2.http.GET
 import java.time.Duration
 
-interface AttendanceController {
+interface AttendanceApi {
 
-    @GET("./at/all")
+    @GET("at/all")
     suspend fun getAttendances(): Response<List<Attendance>>
 
-    @GET("./at/uid")
+    @GET("at/uid")
     suspend fun getAttendancesByUid(): Response<List<Attendance>>
 
-
-    @GET("./at/uid")
+    @GET("at/uid")
     suspend fun getAttendanceTimes(): Response<List<Duration>>
 
 }

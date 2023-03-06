@@ -1,4 +1,4 @@
-package com.mirea.attsystem.ui.screens
+package com.mirea.attsystem.ui.fragment
 
 import android.os.Bundle
 import android.util.Log
@@ -8,6 +8,7 @@ import androidx.core.view.MenuProvider
 import com.mirea.attsystem.R
 import com.mirea.attsystem.databinding.FragmentEditPersonBinding
 import com.mirea.attsystem.model.Person
+import com.mirea.attsystem.ui.view.PersonsViewModel
 import com.mirea.attsystem.util.MAIN_ACTIVITY
 
 class EditPersonFragment : Fragment(R.layout.fragment_edit_person), MenuProvider {

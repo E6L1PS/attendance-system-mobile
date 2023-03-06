@@ -1,26 +1,27 @@
-package com.mirea.attsystem
+package com.mirea.attsystem.ui
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
-import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.NavController
-import androidx.navigation.Navigation
-import androidx.navigation.findNavController
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
 import com.google.android.material.bottomnavigation.BottomNavigationView
+import com.mirea.attsystem.R
 import com.mirea.attsystem.databinding.ActivityMainBinding
-import com.mirea.attsystem.repository.AttendanceRepository
-import com.mirea.attsystem.repository.PersonRepository
-import com.mirea.attsystem.ui.screens.*
+import com.mirea.attsystem.data.repository.AttendanceRepository
+import com.mirea.attsystem.data.repository.PersonRepository
+import com.mirea.attsystem.ui.view.AttendancesViewModel
+import com.mirea.attsystem.ui.view.PersonsViewModel
+import com.mirea.attsystem.ui.view.VMProviderFactory
 import com.mirea.attsystem.util.MAIN_ACTIVITY
 
 class MainActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityMainBinding
+
     lateinit var personsVM: PersonsViewModel
     lateinit var attendancesVM: AttendancesViewModel
 
@@ -42,41 +43,20 @@ class MainActivity : AppCompatActivity() {
 
         personsVM = ViewModelProvider(this, personVMProviderFactory)[PersonsViewModel::class.java]
         attendancesVM = ViewModelProvider(this, attendanceVMProviderFactory)[AttendancesViewModel::class.java]
-/*
-        replaceFragment(StartFragment())
-
-        binding.bottomNavigationView.setOnItemSelectedListener {
-            when (it.itemId) {
-                R.id.navigation_start -> replaceFragment(StartFragment())
-                R.id.navigation_person -> replaceFragment(PersonFragment())
-                else -> {
-
-                }
-            }
-            true
-        }*/
 
         val navView: BottomNavigationView = binding.bottomNavigationView
-        navHostFragment =
-            supportFragmentManager.findFragmentById(R.id.nav_fragment) as NavHostFragment
+        navHostFragment = supportFragmentManager.findFragmentById(R.id.nav_fragment) as NavHostFragment
         navController = navHostFragment.navController
-        //navController = Navigation.findNavController(this, R.id.nav_fragment)
+
         val appBarConfiguration = AppBarConfiguration(
             setOf(
                 R.id.navigation_start,
                 R.id.navigation_person
             )
         )
+
         setupActionBarWithNavController(navController, appBarConfiguration)
         navView.setupWithNavController(navController)
-    }
-
-    fun replaceFragment(fragment: Fragment) {
-
-        val fragmentManager = supportFragmentManager
-        val fragmentTransaction = fragmentManager.beginTransaction()
-        fragmentTransaction.replace(R.id.nav_fragment, fragment)
-        fragmentTransaction.commit()
     }
 
 

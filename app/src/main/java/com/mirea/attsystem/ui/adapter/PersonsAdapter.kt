@@ -1,4 +1,4 @@
-package com.mirea.attsystem.adapters
+package com.mirea.attsystem.ui.adapter
 
 import android.util.Log
 import android.view.LayoutInflater
@@ -13,7 +13,6 @@ import com.mirea.attsystem.model.Person
 
 
 interface PersonActionListener {
-
     fun onPersonDelete(uid: Long)
 
     fun onPersonUpdate()
