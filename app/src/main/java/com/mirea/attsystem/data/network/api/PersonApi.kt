@@ -16,7 +16,7 @@ interface PersonApi {
     @DELETE("person/delete/{uid}")
     suspend fun deletePerson(@Path("uid") uid: Long)
 
-    @PUT("person/delete/{uid}")
+    @PUT("person/update")
     suspend fun updatePerson(@Body person: Person)
 
 }

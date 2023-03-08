@@ -64,7 +64,11 @@ class AddPersonFragment : Fragment(R.layout.fragment_add_person), MenuProvider {
                         tiEtName.text.toString(),
                         tiEtLastName.text.toString(),
                         tiEtJobTitle.text.toString(),
-                        'M'
+                        when (rgGender.checkedRadioButtonId) {
+                            R.id.rb_man -> 'M'
+                            R.id.rb_woman -> 'W'
+                            else -> 'M'
+                        }
                     )
                     Log.d("bApplyLog", person.toString())
                     viewModel.addPerson(person)

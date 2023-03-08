@@ -96,9 +96,8 @@ class PersonFragment : Fragment(R.layout.fragment_person) {
             }
 
             override fun onPersonUpdate(uid: Long) {
-                val direction = PersonFragmentDirections.actionNavigationPersonToEditPersonFragment(
-                    uid
-                )
+                val direction = PersonFragmentDirections.actionNavigationPersonToEditPersonFragment(uid)
+
                 Navigation.findNavController(view)
                     .navigate(direction)
             }

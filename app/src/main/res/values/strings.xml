@@ -16,4 +16,6 @@
     <string name="delete">Удалить</string>
     <string name="more">Подробнее</string>
     <string name="attendances">Посещения</string>
+    <string name="man">Мужчина</string>
+    <string name="woman">Женщина</string>
 </resources>

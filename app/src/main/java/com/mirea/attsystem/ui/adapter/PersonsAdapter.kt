@@ -2,7 +2,6 @@ package com.mirea.attsystem.ui.adapter
 
 import android.util.Log
 import android.view.LayoutInflater
-import android.view.MenuItem
 import android.view.View
 import android.view.ViewGroup
 import android.widget.PopupMenu
@@ -12,7 +11,6 @@ import androidx.recyclerview.widget.RecyclerView
 import com.mirea.attsystem.R
 import com.mirea.attsystem.databinding.ItemPersonBinding
 import com.mirea.attsystem.model.Person
-import com.mirea.attsystem.util.MAIN_ACTIVITY
 
 
 interface PersonActionListener {
@@ -66,7 +64,7 @@ class PersonsAdapter(private val personActionListener: PersonActionListener) :
             tvName.text = person.name
             tvLastName.text = person.lastName
             tvJobTitle.text = person.jobTitle
-            tvGender.text = person.gender.toString()
+            tvGender.text = if (person.gender == 'M') "Мужчина" else "Женщина"
         }
     }
 
@@ -101,7 +99,6 @@ class PersonsAdapter(private val personActionListener: PersonActionListener) :
         }
         popupMenu.show()
     }
-
 
 
 }
