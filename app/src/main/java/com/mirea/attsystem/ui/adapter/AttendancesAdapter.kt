@@ -49,7 +49,9 @@ class AttendancesAdapter : RecyclerView.Adapter<AttendancesAdapter.AttendancesVH
         val attendance = differ.currentList[position]
         with(holder.binding) {
             tvDate.text = attendance.date
-            tvPerson.text = attendance.person.name
+
+            tvLastName.text = attendance.person.lastName
+            tvName.text = attendance.person.name
         }
 
         if (attendance.status) {

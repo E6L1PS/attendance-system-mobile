@@ -58,15 +58,18 @@ class AddPersonFragment : Fragment(R.layout.fragment_add_person), MenuProvider {
         when (menuItem.itemId) {
             android.R.id.home -> MAIN_ACTIVITY.navController.navigate(R.id.action_navigation_add_person_to_navigation_person)
             R.id.apply -> {
-                val person = Person(
-                    binding.tiEtUid.text.toString().toLong(),
-                    binding.tiEtName.text.toString(),
-                    binding.tiEtLastName.text.toString(),
-                    binding.tiEtJobTitle.text.toString(),
-                    'M'
+                with(binding.addPerson) {
+                    val person = Person(
+                        tiEtUid.text.toString().toLong(),
+                        tiEtName.text.toString(),
+                        tiEtLastName.text.toString(),
+                        tiEtJobTitle.text.toString(),
+                        'M'
                     )
-                Log.d("bApplyLog", person.toString())
-                viewModel.addPerson(person)
+                    Log.d("bApplyLog", person.toString())
+                    viewModel.addPerson(person)
+                }
+
                 MAIN_ACTIVITY.navController.navigate(R.id.action_navigation_add_person_to_navigation_person)
             }
         }

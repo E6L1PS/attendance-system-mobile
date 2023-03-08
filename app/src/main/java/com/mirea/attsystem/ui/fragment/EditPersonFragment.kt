@@ -5,6 +5,7 @@ import android.util.Log
 import android.view.*
 import androidx.fragment.app.Fragment
 import androidx.core.view.MenuProvider
+import androidx.navigation.fragment.navArgs
 import com.mirea.attsystem.R
 import com.mirea.attsystem.databinding.FragmentEditPersonBinding
 import com.mirea.attsystem.model.Person
@@ -15,7 +16,7 @@ class EditPersonFragment : Fragment(R.layout.fragment_edit_person), MenuProvider
 
     private lateinit var binding: FragmentEditPersonBinding
     private lateinit var viewModel: PersonsViewModel
-
+    private val args by navArgs<EditPersonFragmentArgs>()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -23,7 +24,7 @@ class EditPersonFragment : Fragment(R.layout.fragment_edit_person), MenuProvider
     ): View? {
         val binding = FragmentEditPersonBinding.inflate(inflater, container, false)
         viewModel = MAIN_ACTIVITY.personsVM
-
+        binding.tiEtUid.setText(getPersonUid().toString())
         return binding.root
     }
 
@@ -56,4 +57,6 @@ class EditPersonFragment : Fragment(R.layout.fragment_edit_person), MenuProvider
         }
         return true
     }
+
+    private fun getPersonUid(): Long = args.uid
 }

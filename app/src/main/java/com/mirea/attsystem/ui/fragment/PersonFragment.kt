@@ -13,6 +13,7 @@ import com.mirea.attsystem.R
 import com.mirea.attsystem.ui.adapter.PersonActionListener
 import com.mirea.attsystem.ui.adapter.PersonsAdapter
 import com.mirea.attsystem.databinding.FragmentPersonBinding
+import com.mirea.attsystem.model.Person
 import com.mirea.attsystem.ui.view.PersonsViewModel
 import com.mirea.attsystem.util.MAIN_ACTIVITY
 import com.mirea.attsystem.util.Resource
@@ -94,10 +95,19 @@ class PersonFragment : Fragment(R.layout.fragment_person) {
                 viewModel.deletePerson(uid)
             }
 
-            override fun onPersonUpdate() {
+            override fun onPersonUpdate(uid: Long) {
+                val direction = PersonFragmentDirections.actionNavigationPersonToEditPersonFragment(
+                    uid
+                )
                 Navigation.findNavController(view)
-                    .navigate(R.id.navigation_edit_person)
+                    .navigate(direction)
             }
+
+            override fun onPersonInfo(person: Person) {
+                Navigation.findNavController(view)
+                    .navigate(R.id.action_navigation_person_to_infoPersonFragment)
+            }
+
 
         })
         binding.rvPersons.apply {

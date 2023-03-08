@@ -2,25 +2,35 @@ package com.mirea.attsystem.ui.adapter
 
 import android.util.Log
 import android.view.LayoutInflater
+import android.view.MenuItem
 import android.view.View
 import android.view.ViewGroup
+import android.widget.PopupMenu
 import androidx.recyclerview.widget.AsyncListDiffer
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.mirea.attsystem.R
 import com.mirea.attsystem.databinding.ItemPersonBinding
 import com.mirea.attsystem.model.Person
+import com.mirea.attsystem.util.MAIN_ACTIVITY
 
 
 interface PersonActionListener {
     fun onPersonDelete(uid: Long)
 
-    fun onPersonUpdate()
+    fun onPersonUpdate(uid: Long)
+
+    fun onPersonInfo(person: Person)
+
 }
 
-class PersonsAdapter(private val personActionListener: PersonActionListener) : RecyclerView.Adapter<PersonsAdapter.PersonsVH>(), View.OnClickListener {
+class PersonsAdapter(private val personActionListener: PersonActionListener) :
+    RecyclerView.Adapter<PersonsAdapter.PersonsVH>(),
+    View.OnClickListener {
 
-    inner class PersonsVH(val binding: ItemPersonBinding) : RecyclerView.ViewHolder(binding.root)
+    inner class PersonsVH(val binding: ItemPersonBinding) : RecyclerView.ViewHolder(binding.root) {
+
+    }
 
     private val differCallback = object : DiffUtil.ItemCallback<Person>() {
         override fun areItemsTheSame(oldItem: Person, newItem: Person): Boolean {
@@ -65,16 +75,33 @@ class PersonsAdapter(private val personActionListener: PersonActionListener) : R
 
         when (v.id) {
             R.id.ic_more -> {
-                Log.d("uidOnClickMore", person.uid.toString())
-                personActionListener.onPersonDelete(person.uid)
+                Log.d("showPopupMenu", person.uid.toString())
+                showPopupMenu(v)
 
             }
             else -> {
-                Log.d("", person.uid.toString())
-                personActionListener.onPersonUpdate()
+                Log.d("onPersonInfo", person.toString())
+                personActionListener.onPersonInfo(person)
 
             }
         }
     }
+
+    private fun showPopupMenu(view: View) {
+
+        val person = view.tag as Person
+        val popupMenu = PopupMenu(view.context, view)
+        popupMenu.inflate(R.menu.pop_up_menu)
+        popupMenu.setOnMenuItemClickListener {
+            when (it.itemId) {
+                R.id.navigation_edit_person -> personActionListener.onPersonUpdate(person.uid)
+                R.id.navigation_delete -> personActionListener.onPersonDelete(person.uid)
+            }
+            true
+        }
+        popupMenu.show()
+    }
+
+
 
 }

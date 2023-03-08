@@ -22,6 +22,9 @@
         <action
             android:id="@+id/action_navigation_person_to_editPersonFragment"
             app:destination="@id/navigation_edit_person" />
+        <action
+            android:id="@+id/action_navigation_person_to_infoPersonFragment"
+            app:destination="@id/navigation_info_person" />
     </fragment>
 
     <fragment
@@ -36,10 +39,22 @@
     <fragment
         android:id="@+id/navigation_edit_person"
         android:name="com.mirea.attsystem.ui.fragment.EditPersonFragment"
-        android:label="fragment_edit_person"
+        android:label="@string/edit"
         tools:layout="@layout/fragment_edit_person" >
         <action
             android:id="@+id/action_navigation_edit_person_to_navigation_person"
+            app:destination="@id/navigation_person" />
+        <argument
+            android:name="uid"
+            app:argType="long" />
+    </fragment>
+    <fragment
+        android:id="@+id/navigation_info_person"
+        android:name="com.mirea.attsystem.ui.fragment.InfoPersonFragment"
+        android:label="@string/more"
+        tools:layout="@layout/fragment_info_person" >
+        <action
+            android:id="@+id/action_infoPersonFragment_to_navigation_person"
             app:destination="@id/navigation_person" />
     </fragment>
 </navigation>

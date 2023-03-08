@@ -19,149 +19,156 @@
         android:layout_height="match_parent"
         android:padding="8dp">
 
-        <ImageView
-            android:id="@+id/iv_person"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="10dp"
-            android:layout_marginTop="10dp"
-            android:layout_marginEnd="10dp"
-            android:layout_marginBottom="10dp"
-            android:cropToPadding="true"
-            android:scaleType="centerCrop"
-            android:src="@drawable/ic_launcher_foreground" />
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <ImageView
+                android:id="@+id/iv_person"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:cropToPadding="true"
+                android:scaleType="centerCrop"
+                android:src="@drawable/ic_launcher_foreground"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
 
 
+            <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/gl_start_text"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:orientation="vertical"
+                app:layout_constraintEnd_toStartOf="@id/ic_more"
+                app:layout_constraintGuide_begin="126dp"
+                app:layout_constraintStart_toEndOf="@id/iv_person" />
 
-        <LinearLayout
-            android:id="@+id/info_layout"
-            android:layout_width="244dp"
-            android:layout_height="wrap_content"
-            android:layout_alignTop="@id/iv_person"
-            android:layout_alignBottom="@id/iv_person"
-            android:layout_marginBottom="0dp"
-            android:layout_toEndOf="@id/iv_person"
-            android:orientation="vertical">
 
-            <LinearLayout
-                android:layout_width="match_parent"
+            <TextView
+                android:id="@+id/tv_name"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:orientation="horizontal">
+                android:includeFontPadding="false"
+                android:textColor="@color/main_black"
+                android:textSize="20sp"
+                android:textStyle="bold"
+                app:layout_constraintStart_toEndOf="@id/gl_start_text"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:text="@string/name" />
 
-                <TextView
-                    android:id="@+id/tvLastName"
-                    android:layout_width="128dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:includeFontPadding="false"
-                    android:textColor="@color/main_black"
-                    android:textSize="20sp"
-                    android:textStyle="bold"
-                    tools:text="LastName" />
 
-                <TextView
-                    android:id="@+id/tvName"
-                    android:layout_width="91dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:includeFontPadding="false"
-                    android:textColor="@color/main_black"
-                    android:textSize="20sp"
-                    android:textStyle="bold"
-                    tools:text="Name" />
-
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
+            <TextView
+                android:id="@+id/tv_last_name"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal">
+                android:layout_weight="1"
+                android:includeFontPadding="false"
+                android:textColor="@color/main_black"
+                android:textSize="20sp"
+                android:textStyle="bold"
+                app:layout_constraintHorizontal_bias="0.1"
+                app:layout_constraintBottom_toBottomOf="@+id/tv_name"
+                app:layout_constraintEnd_toStartOf="@id/ic_more"
+                app:layout_constraintStart_toEndOf="@id/tv_name"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:text="@string/last_name" />
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:includeFontPadding="false"
-                    android:text="@string/job_title"
-                    android:textColor="@color/main_black"
-                    android:textSize="20sp"
-                    android:textStyle="bold" />
+            <TextView
+                android:id="@+id/job_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:includeFontPadding="false"
+                android:text="@string/job_title"
+                android:textColor="@color/main_black"
+                android:layout_marginStart="10dp"
+                android:textSize="18sp"
+                app:layout_constraintStart_toEndOf="@id/gl_start_text"
+                app:layout_constraintTop_toBottomOf="@id/tv_name" />
 
-                <TextView
-                    android:id="@+id/tvJobTitle"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:includeFontPadding="false"
-                    android:textColor="@color/main_black"
-                    android:textSize="20sp"
-                    android:textStyle="bold"
-                    tools:text="JobTitle" />
+            <TextView
+                android:id="@+id/tv_job_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:includeFontPadding="false"
+                android:textColor="@color/main_black"
+                android:textSize="18sp"
+                app:layout_constraintHorizontal_bias="0.1"
+                app:layout_constraintBottom_toBottomOf="@id/job_title"
+                app:layout_constraintEnd_toStartOf="@id/ic_more"
+                app:layout_constraintStart_toEndOf="@id/job_title"
+                tools:text="@string/job_title" />
 
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:paddingStart="20dp"
-                    android:text="@string/uid"
-                    android:textColor="@color/main_black"
-                    android:textSize="18sp" />
-
-                <TextView
-                    android:id="@+id/tvUid"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:textColor="@color/main_black"
-                    android:textSize="16sp"
-                    tools:text="uid" />
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:paddingStart="20dp"
-                    android:text="@string/gender"
-                    android:textColor="@color/main_black"
-                    android:textSize="18sp" />
-
-                <TextView
-                    android:id="@+id/tvGender"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:textColor="@color/main_black"
-                    tools:text="gender" />
-            </LinearLayout>
-
-        </LinearLayout>
-
-        <ImageView
-            android:id="@+id/ic_more"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:layout_alignRight="@id/info_layout"
-            android:layout_alignTop="@id/iv_person"
-            android:layout_alignBottom="@id/iv_person"
-            app:srcCompat="@drawable/baseline_more_vert_24"
-            android:clickable="true"
-            android:focusable="true"
-            android:foreground="?attr/selectableItemBackground"/>
+            <TextView
+                android:id="@+id/uid_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:paddingStart="10dp"
+                android:text="@string/uid"
+                android:textColor="@color/main_black"
+                android:textSize="18sp"
+                app:layout_constraintStart_toEndOf="@id/gl_start_text"
+                app:layout_constraintTop_toBottomOf="@id/job_title" />
 
 
+            <TextView
+                android:id="@+id/tv_uid"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:textColor="@color/main_black"
+                android:textSize="16sp"
+                app:layout_constraintHorizontal_bias="0.1"
+                app:layout_constraintBottom_toBottomOf="@id/uid_title"
+                app:layout_constraintEnd_toStartOf="@id/ic_more"
+                app:layout_constraintStart_toEndOf="@id/uid_title"
+                tools:text="uid" />
+
+            <TextView
+                android:id="@+id/gender_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:paddingStart="10dp"
+                android:text="@string/gender"
+                android:textColor="@color/main_black"
+                android:textSize="18sp"
+                app:layout_constraintStart_toEndOf="@id/gl_start_text"
+                app:layout_constraintTop_toBottomOf="@id/uid_title" />
+
+            <TextView
+                android:id="@+id/tv_gender"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:textColor="@color/main_black"
+                app:layout_constraintHorizontal_bias="0.1"
+                app:layout_constraintBottom_toBottomOf="@id/gender_title"
+                app:layout_constraintEnd_toStartOf="@id/ic_more"
+                app:layout_constraintStart_toEndOf="@id/gender_title"
+                tools:text="@string/gender" />
+
+
+            <ImageButton
+                android:id="@+id/ic_more"
+                android:layout_width="23dp"
+                android:layout_height="110dp"
+                android:layout_weight="1"
+                android:backgroundTint="@color/main_up"
+                android:clickable="true"
+                android:focusable="true"
+                android:foreground="?attr/selectableItemBackground"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:srcCompat="@drawable/baseline_more_vert_24"
+                tools:ignore="SpeakableTextPresentCheck" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
 
     </RelativeLayout>
 

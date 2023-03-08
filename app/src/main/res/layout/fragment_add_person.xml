@@ -10,132 +10,15 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <androidx.cardview.widget.CardView
-            android:id="@+id/cardView"
-            android:layout_width="200dp"
-            android:layout_height="200dp"
-            android:clickable="true"
-            android:focusable="true"
-            android:foreground="?attr/selectableItemBackground"
-            app:cardBackgroundColor="@color/cardview_shadow_end_color"
-            app:cardCornerRadius="100dp"
+        <include
+            android:id="@+id/add_person"
+            layout="@layout/fragment_edit_person"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            tools:ignore="SpeakableTextPresentCheck">
-
-            <ImageView
-                android:id="@+id/imageView"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:src="@drawable/ic_launcher_foreground"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
-        </androidx.cardview.widget.CardView>
-
-        <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/tiName"
-            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="32dp"
-            android:layout_marginEnd="32dp"
-            android:hint="@string/name"
-            app:boxStrokeColor="@color/main_black"
-            app:helperText="@string/required"
-            app:helperTextTextColor="@color/red"
-            app:hintTextColor="@color/main_black"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/cardView"
-            app:startIconDrawable="@drawable/ic_va_person">
-
-            <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/tiEtName"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:textColor="@color/main_black"
-                android:textColorHint="@color/main_black" />
-        </com.google.android.material.textfield.TextInputLayout>
-
-        <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/tiLastName"
-            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="32dp"
-            android:layout_marginEnd="32dp"
-            android:hint="@string/last_name"
-            app:boxStrokeColor="@color/main_black"
-            app:helperText="@string/required"
-            app:helperTextTextColor="@color/red"
-            app:hintTextColor="@color/main_black"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tiName"
-            app:startIconDrawable="@drawable/ic_va_person">
-
-            <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/tiEtLastName"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:textColor="@color/main_black"
-                android:textColorHint="@color/main_black" />
-
-
-        </com.google.android.material.textfield.TextInputLayout>
-
-
-        <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/tiUid"
-            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="32dp"
-            android:layout_marginEnd="32dp"
-            android:hint="@string/uid"
-            app:boxStrokeColor="@color/main_black"
-            app:helperText="@string/required"
-            app:helperTextTextColor="@color/red"
-            app:hintTextColor="@color/main_black"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tiLastName"
-            app:startIconDrawable="@drawable/ic_id_card">
-
-            <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/tiEtUid"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:textColor="@color/main_black"
-                android:textColorHint="@color/main_black" />
-        </com.google.android.material.textfield.TextInputLayout>
-
-        <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/tiJobTitle"
-            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="32dp"
-            android:layout_marginEnd="32dp"
-            android:hint="@string/job_title"
-            app:boxStrokeColor="@color/main_black"
-            app:helperText="@string/required"
-            app:helperTextTextColor="@color/red"
-            app:hintTextColor="@color/main_black"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tiUid"
-            app:startIconDrawable="@drawable/ic_job_title">
-
-            <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/tiEtJobTitle"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:textColor="@color/main_black"
-                android:textColorHint="@color/main_black" />
-        </com.google.android.material.textfield.TextInputLayout>
+            app:layout_constraintTop_toTopOf="parent" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
