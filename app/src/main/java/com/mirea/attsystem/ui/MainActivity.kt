@@ -38,6 +38,7 @@ class MainActivity : AppCompatActivity() {
 
         val personRepository = PersonRepository()
         val attendanceRepository = AttendanceRepository()
+
         val personVMProviderFactory = VMProviderFactory(personRepository)
         val attendanceVMProviderFactory = VMProviderFactory(attendanceRepository)
 
@@ -50,7 +51,7 @@ class MainActivity : AppCompatActivity() {
 
         val appBarConfiguration = AppBarConfiguration(
             setOf(
-                R.id.navigation_start,
+                R.id.navigation_attendance,
                 R.id.navigation_person
             )
         )

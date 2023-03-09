@@ -3,7 +3,7 @@
     xmlns:android="http://schemas.android.com/apk/res/android">
 
     <item
-        android:id="@+id/navigation_start"
+        android:id="@+id/navigation_attendance"
         android:icon="@drawable/ic_ac_info"
         android:title="@string/attendances"
         app:showAsAction="ifRoom" />

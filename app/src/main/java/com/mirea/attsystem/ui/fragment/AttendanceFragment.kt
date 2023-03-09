@@ -9,26 +9,24 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.mirea.attsystem.R
+import com.mirea.attsystem.databinding.FragmentAttendanceBinding
 import com.mirea.attsystem.ui.adapter.AttendancesAdapter
-import com.mirea.attsystem.databinding.FragmentStartBinding
 import com.mirea.attsystem.ui.view.AttendancesViewModel
 import com.mirea.attsystem.util.MAIN_ACTIVITY
 import com.mirea.attsystem.util.Resource
 
-class StartFragment : Fragment(R.layout.fragment_start) {
+class AttendanceFragment : Fragment(R.layout.fragment_attendance) {
 
-    private lateinit var binding: FragmentStartBinding
+    private lateinit var binding: FragmentAttendanceBinding
     private lateinit var viewModel: AttendancesViewModel
-    private lateinit var attendanceAdapter: AttendancesAdapter
+    private lateinit var attendancesAdapter: AttendancesAdapter
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        binding = FragmentStartBinding.inflate(inflater, container, false)
-        val view = binding.root
+        binding = FragmentAttendanceBinding.inflate(inflater, container, false)
 
-
-        return view
+        return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -50,7 +48,7 @@ class StartFragment : Fragment(R.layout.fragment_start) {
                 is Resource.Success -> {
                     hideProgressBar()
                     response.data?.let { persons ->
-                        attendanceAdapter.differ.submitList(persons)
+                        attendancesAdapter.differ.submitList(persons)
                     }
                 }
                 is Resource.Error -> {
@@ -75,10 +73,10 @@ class StartFragment : Fragment(R.layout.fragment_start) {
     }
 
     private fun setupRecyclerView() {
-        attendanceAdapter = AttendancesAdapter()
+        attendancesAdapter = AttendancesAdapter()
         binding.rvAttendances.apply {
             layoutManager = LinearLayoutManager(activity)
-            adapter = attendanceAdapter
+            adapter = attendancesAdapter
         }
     }
 }

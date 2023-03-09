@@ -91,6 +91,7 @@ class PersonFragment : Fragment(R.layout.fragment_person) {
 
     private fun setupRecyclerView(view: View) {
         personAdapter = PersonsAdapter(object : PersonActionListener {
+
             override fun onPersonDelete(uid: Long) {
                 viewModel.deletePerson(uid)
             }
@@ -103,8 +104,10 @@ class PersonFragment : Fragment(R.layout.fragment_person) {
             }
 
             override fun onPersonInfo(person: Person) {
+
+                val direction = PersonFragmentDirections.actionNavigationPersonToInfoPersonFragment(person.uid)
                 Navigation.findNavController(view)
-                    .navigate(R.id.action_navigation_person_to_infoPersonFragment)
+                    .navigate(direction)
             }
 
 
