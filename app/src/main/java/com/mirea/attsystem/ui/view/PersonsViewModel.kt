@@ -3,13 +3,16 @@ package com.mirea.attsystem.ui.view
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.mirea.attsystem.model.Person
-import com.mirea.attsystem.data.repository.PersonRepository
+import com.mirea.attsystem.domain.model.Person
+import com.mirea.attsystem.data.repository.PersonRepositoryImpl
 import com.mirea.attsystem.util.Resource
+import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
+import javax.inject.Inject
 
-class PersonsViewModel(
-    private val personRepository: PersonRepository
+@HiltViewModel
+class PersonsViewModel @Inject constructor(
+    private val personRepository: PersonRepositoryImpl
 ) : ViewModel() {
 
     init {

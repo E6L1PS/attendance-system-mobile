@@ -3,6 +3,7 @@ plugins {
     id 'org.jetbrains.kotlin.android'
     id 'androidx.navigation.safeargs.kotlin'//nav atr
     id 'kotlin-kapt'
+    id 'dagger.hilt.android.plugin'
 }
 
 android {
@@ -47,16 +48,13 @@ android {
 }
 
 dependencies {
-    def nav_version = "2.5.3"
-    def coroutines_version = "1.6.4"
-    def retrofit_version = "2.9.0"
-    def lifecycle_version = "2.5.1"
-    def room_version = "2.5.0"
+    //hilt
+    implementation "com.google.dagger:hilt-android:$hilt_version"
+    kapt "com.google.dagger:hilt-compiler:$hilt_version"
 
     //Room
     implementation "androidx.room:room-runtime:$room_version"
     implementation "androidx.room:room-ktx:$room_version" // coroutines and flow sup
-    annotationProcessor "androidx.room:room-compiler:$room_version"
 
     // To use Kotlin annotation processing tool (kapt)
     kapt "androidx.room:room-compiler:$room_version"

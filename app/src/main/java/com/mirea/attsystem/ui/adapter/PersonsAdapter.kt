@@ -10,7 +10,7 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.mirea.attsystem.R
 import com.mirea.attsystem.databinding.ItemPersonBinding
-import com.mirea.attsystem.model.Person
+import com.mirea.attsystem.domain.model.Person
 
 
 interface PersonActionListener {

@@ -6,19 +6,22 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.mirea.attsystem.R
 import com.mirea.attsystem.databinding.FragmentAttendanceBinding
 import com.mirea.attsystem.ui.adapter.AttendancesAdapter
 import com.mirea.attsystem.ui.view.AttendancesViewModel
-import com.mirea.attsystem.util.MAIN_ACTIVITY
 import com.mirea.attsystem.util.Resource
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class AttendanceFragment : Fragment(R.layout.fragment_attendance) {
 
+    private val viewModel by viewModels<AttendancesViewModel>()
     private lateinit var binding: FragmentAttendanceBinding
-    private lateinit var viewModel: AttendancesViewModel
+
     private lateinit var attendancesAdapter: AttendancesAdapter
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -31,7 +34,6 @@ class AttendanceFragment : Fragment(R.layout.fragment_attendance) {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        viewModel = MAIN_ACTIVITY.attendancesVM
 
         setupRecyclerView()
 

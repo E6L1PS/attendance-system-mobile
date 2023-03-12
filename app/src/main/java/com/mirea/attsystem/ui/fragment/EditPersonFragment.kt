@@ -6,17 +6,20 @@ import android.util.Log
 import android.view.*
 import androidx.core.view.MenuProvider
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.viewModels
+import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.mirea.attsystem.R
 import com.mirea.attsystem.databinding.FragmentEditPersonBinding
-import com.mirea.attsystem.model.Person
+import com.mirea.attsystem.domain.model.Person
 import com.mirea.attsystem.ui.view.PersonsViewModel
-import com.mirea.attsystem.util.MAIN_ACTIVITY
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class EditPersonFragment : Fragment(R.layout.fragment_edit_person), MenuProvider {
 
     private lateinit var binding: FragmentEditPersonBinding
-    private lateinit var viewModel: PersonsViewModel
+    private val viewModel by viewModels<PersonsViewModel>()
     private val args by navArgs<EditPersonFragmentArgs>()
 
     override fun onCreateView(
@@ -24,8 +27,6 @@ class EditPersonFragment : Fragment(R.layout.fragment_edit_person), MenuProvider
         savedInstanceState: Bundle?
     ): View? {
         binding = FragmentEditPersonBinding.inflate(inflater, container, false)
-        viewModel = MAIN_ACTIVITY.personsVM
-
         with(binding.tiEtUid) {
             setText(getPersonUid().toString())
             isEnabled = false
@@ -38,7 +39,6 @@ class EditPersonFragment : Fragment(R.layout.fragment_edit_person), MenuProvider
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         activity?.addMenuProvider(this, viewLifecycleOwner)
-        viewModel = MAIN_ACTIVITY.personsVM
 
     }
 
@@ -48,7 +48,7 @@ class EditPersonFragment : Fragment(R.layout.fragment_edit_person), MenuProvider
 
     override fun onMenuItemSelected(menuItem: MenuItem): Boolean {
         when (menuItem.itemId) {
-            android.R.id.home -> MAIN_ACTIVITY.navController.navigate(R.id.action_navigation_edit_person_to_navigation_person)
+            android.R.id.home -> findNavController().navigate(R.id.action_navigation_edit_person_to_navigation_person)
             R.id.apply -> {
                 with(binding) {
                     val person = Person(
@@ -65,7 +65,7 @@ class EditPersonFragment : Fragment(R.layout.fragment_edit_person), MenuProvider
                     Log.d("bApplyLog", person.toString())
                     viewModel.updatePerson(person)
                 }
-                MAIN_ACTIVITY.navController.navigate(R.id.action_navigation_edit_person_to_navigation_person)
+                findNavController().navigate(R.id.action_navigation_edit_person_to_navigation_person)
             }
         }
         return true

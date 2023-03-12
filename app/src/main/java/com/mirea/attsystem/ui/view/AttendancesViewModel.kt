@@ -3,20 +3,26 @@ package com.mirea.attsystem.ui.view
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.mirea.attsystem.data.repository.AttendanceRepository
-import com.mirea.attsystem.model.Attendance
+import com.mirea.attsystem.data.repository.AttendanceRepositoryImpl
+import com.mirea.attsystem.domain.model.Attendance
 import com.mirea.attsystem.util.Resource
+import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
+import javax.inject.Inject
 
-class AttendancesViewModel(
-    private val attendanceRepository: AttendanceRepository
+@HiltViewModel
+class AttendancesViewModel @Inject constructor(
+    private val attendanceRepository: AttendanceRepositoryImpl
 ) : ViewModel() {
+
+    val attendances: MutableLiveData<Resource<List<Attendance>>> = MutableLiveData()
 
     init {
         getAttendances()
+     /*   viewModelScope.launch {
+            attendanceRepository.insertAttendancesToDb(attendances = attendances.value?.data)
+        }*/
     }
-
-    val attendances: MutableLiveData<Resource<List<Attendance>>> = MutableLiveData()
 
     val attendancesByUid: MutableLiveData<Resource<List<Attendance>>> = MutableLiveData()
     fun getAttendances() = viewModelScope.launch {

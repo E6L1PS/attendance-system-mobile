@@ -5,16 +5,19 @@ import android.util.Log
 import android.view.*
 import androidx.core.view.MenuProvider
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.viewModels
+import androidx.navigation.fragment.findNavController
 import com.mirea.attsystem.R
 import com.mirea.attsystem.databinding.FragmentAddPersonBinding
-import com.mirea.attsystem.model.Person
+import com.mirea.attsystem.domain.model.Person
 import com.mirea.attsystem.ui.view.PersonsViewModel
-import com.mirea.attsystem.util.MAIN_ACTIVITY
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class AddPersonFragment : Fragment(R.layout.fragment_add_person), MenuProvider {
 
     private lateinit var binding: FragmentAddPersonBinding
-    private lateinit var viewModel: PersonsViewModel
+    private val viewModel by viewModels<PersonsViewModel>()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -28,7 +31,6 @@ class AddPersonFragment : Fragment(R.layout.fragment_add_person), MenuProvider {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         activity?.addMenuProvider(this, viewLifecycleOwner)
-        viewModel = MAIN_ACTIVITY.personsVM
 
         //val tiEtUid = binding.tiEtUid
 
@@ -56,7 +58,7 @@ class AddPersonFragment : Fragment(R.layout.fragment_add_person), MenuProvider {
 
     override fun onMenuItemSelected(menuItem: MenuItem): Boolean {
         when (menuItem.itemId) {
-            android.R.id.home -> MAIN_ACTIVITY.navController.navigate(R.id.action_navigation_add_person_to_navigation_person)
+            android.R.id.home -> findNavController().navigate(R.id.action_navigation_add_person_to_navigation_person)
             R.id.apply -> {
                 with(binding.addPerson) {
                     val person = Person(
@@ -74,7 +76,7 @@ class AddPersonFragment : Fragment(R.layout.fragment_add_person), MenuProvider {
                     viewModel.addPerson(person)
                 }
 
-                MAIN_ACTIVITY.navController.navigate(R.id.action_navigation_add_person_to_navigation_person)
+                findNavController().navigate(R.id.action_navigation_add_person_to_navigation_person)
             }
         }
         return true

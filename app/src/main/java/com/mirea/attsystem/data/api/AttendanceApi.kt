@@ -1,6 +1,6 @@
-package com.mirea.attsystem.data.network.api
+package com.mirea.attsystem.data.api
 
-import com.mirea.attsystem.model.Attendance
+import com.mirea.attsystem.domain.model.Attendance
 import retrofit2.Response
 import retrofit2.http.GET
 import retrofit2.http.Path

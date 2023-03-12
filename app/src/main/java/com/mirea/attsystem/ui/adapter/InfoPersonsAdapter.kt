@@ -6,7 +6,7 @@ import androidx.recyclerview.widget.AsyncListDiffer
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.mirea.attsystem.databinding.ItemAttendanceBinding
-import com.mirea.attsystem.model.Attendance
+import com.mirea.attsystem.domain.model.Attendance
 
 class InfoPersonsAdapter : RecyclerView.Adapter<InfoPersonsAdapter.InfoPersonsVH>() {
 

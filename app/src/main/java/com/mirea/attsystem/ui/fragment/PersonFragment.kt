@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
 import androidx.navigation.Navigation
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -13,15 +14,16 @@ import com.mirea.attsystem.R
 import com.mirea.attsystem.ui.adapter.PersonActionListener
 import com.mirea.attsystem.ui.adapter.PersonsAdapter
 import com.mirea.attsystem.databinding.FragmentPersonBinding
-import com.mirea.attsystem.model.Person
+import com.mirea.attsystem.domain.model.Person
 import com.mirea.attsystem.ui.view.PersonsViewModel
-import com.mirea.attsystem.util.MAIN_ACTIVITY
 import com.mirea.attsystem.util.Resource
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class PersonFragment : Fragment(R.layout.fragment_person) {
 
     private lateinit var binding: FragmentPersonBinding
-    private lateinit var viewModel: PersonsViewModel
+    private val viewModel by viewModels<PersonsViewModel>()
     private lateinit var personAdapter: PersonsAdapter
 
     override fun onCreateView(
@@ -40,8 +42,6 @@ class PersonFragment : Fragment(R.layout.fragment_person) {
                 .navigate(R.id.action_navigation_person_to_navigation_add_person)
         }
 
-
-        viewModel = MAIN_ACTIVITY.personsVM
         setupRecyclerView(view)
 
         call()

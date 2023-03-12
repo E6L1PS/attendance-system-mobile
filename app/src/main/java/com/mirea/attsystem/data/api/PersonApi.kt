@@ -1,7 +1,7 @@
-package com.mirea.attsystem.data.network.api
+package com.mirea.attsystem.data.api
 
 
-import com.mirea.attsystem.model.Person
+import com.mirea.attsystem.domain.model.Person
 import retrofit2.Response
 import retrofit2.http.*
 
