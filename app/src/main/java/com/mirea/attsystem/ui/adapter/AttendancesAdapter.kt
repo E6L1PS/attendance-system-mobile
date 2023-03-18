@@ -1,5 +1,6 @@
 package com.mirea.attsystem.ui.adapter
 
+import android.annotation.SuppressLint
 import android.graphics.Color
 import android.view.LayoutInflater
 import android.view.View
@@ -9,6 +10,8 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.mirea.attsystem.databinding.ItemAttendanceBinding
 import com.mirea.attsystem.domain.model.Attendance
+import java.text.SimpleDateFormat
+import java.util.*
 
 
 class AttendancesAdapter : RecyclerView.Adapter<AttendancesAdapter.AttendancesVH>(), View.OnClickListener {
@@ -41,10 +44,16 @@ class AttendancesAdapter : RecyclerView.Adapter<AttendancesAdapter.AttendancesVH
     override fun getItemCount(): Int = differ.currentList.size
 
 
+    @SuppressLint("SimpleDateFormat")
     override fun onBindViewHolder(holder: AttendancesVH, position: Int) {
         val attendance = differ.currentList[position]
         with(holder.binding) {
-            tvDate.text = attendance.date
+
+            val simpleDateFormat = SimpleDateFormat("yyyy-MM-dd@HH:mm:ss").parse(attendance.date)
+
+            tvDate.text = SimpleDateFormat("yyyy-MM-dd").format(simpleDateFormat)
+            tvTime.text = SimpleDateFormat("HH:mm:ss").format(simpleDateFormat)
+            tvGate.text = "Название входа: ${attendance.gate.name}"
             tvLastName.text = attendance.person.lastName
             tvName.text = attendance.person.name
         }

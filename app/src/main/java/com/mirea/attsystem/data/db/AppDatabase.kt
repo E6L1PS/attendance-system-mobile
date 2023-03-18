@@ -19,9 +19,9 @@ import com.mirea.attsystem.data.db.entities.PersonEntity
 )
 abstract class AppDatabase : RoomDatabase() {
 
-    abstract fun getPersonDao(): PersonDao
-
     abstract fun getAttendanceDao(): AttendanceDao
+
+    abstract fun getPersonDao(): PersonDao
 
     abstract fun getGateDao(): GateDao
 }

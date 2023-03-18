@@ -18,9 +18,10 @@ data class Attendance(
         personId = person.uid,
         gateId = gate.id
     )
-    fun toAttendanceWithAll(a: Attendance): AttendanceWithAll = AttendanceWithAll(
-        attendance = a.toAttendanceEntity(),
-        person = a.person.toPersonEntity(),
-        gate = a.gate.toGateEntity()
+
+    fun toAttendanceWithAll(): AttendanceWithAll = AttendanceWithAll(
+        attendance = toAttendanceEntity(),
+        person = person.toPersonEntity(),
+        gate = gate.toGateEntity()
     )
 }

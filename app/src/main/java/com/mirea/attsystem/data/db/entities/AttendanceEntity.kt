@@ -1,10 +1,9 @@
 package com.mirea.attsystem.data.db.entities
 
-import androidx.room.ColumnInfo
-import androidx.room.Entity
-import androidx.room.ForeignKey
-import androidx.room.PrimaryKey
+import androidx.room.*
 import com.mirea.attsystem.domain.model.Attendance
+import com.mirea.attsystem.domain.model.Gate
+import com.mirea.attsystem.domain.model.Person
 
 @Entity(
     tableName = "attendance",
@@ -34,6 +33,7 @@ data class AttendanceEntity(
 
     @ColumnInfo(name = "gate_id")
     val gateId: Int,
+
     val status: Boolean,
     val date: String
 ) {

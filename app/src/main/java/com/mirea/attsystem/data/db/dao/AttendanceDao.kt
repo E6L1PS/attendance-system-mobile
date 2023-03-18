@@ -7,15 +7,13 @@ import com.mirea.attsystem.data.db.entities.relations.AttendanceWithAll
 
 @Dao
 interface AttendanceDao {
-
     @Transaction
     @Query("SELECT * FROM attendance")
-    suspend fun findAll(): List<AttendanceWithAll>
-
-
+    suspend fun findAll(): List<AttendanceEntity>
 
     @Transaction
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insertAll(at: List<AttendanceEntity>)
+
 
 }

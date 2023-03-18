@@ -19,12 +19,6 @@ class MainActivity : AppCompatActivity() {
     lateinit var navHostFragment: NavHostFragment
     lateinit var navController: NavController
 
-/* TODO create db and inject
-    private val db: AppDatabase by lazy {
-        Room.databaseBuilder(applicationContext, AppDatabase::class.java, "attendance_db")
-            .build()
-    }*/
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)

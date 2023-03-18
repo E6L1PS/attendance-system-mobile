@@ -5,11 +5,14 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.content.res.ResourcesCompat
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
 import androidx.navigation.fragment.navArgs
+import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.mirea.attsystem.R
 import com.mirea.attsystem.databinding.FragmentInfoPersonBinding
 import com.mirea.attsystem.ui.adapter.AttendancesAdapter
@@ -71,8 +74,13 @@ class InfoPersonFragment : Fragment(R.layout.fragment_info_person) {
     }
 
     private fun setupRecyclerView() {
+        val divider = DividerItemDecoration(context, RecyclerView.VERTICAL)
+        ResourcesCompat.getDrawable(resources, R.drawable.divider, null)?.let {
+            divider.setDrawable(it)
+        }
         attendancesAdapter = AttendancesAdapter()
         binding.rvInfoPersons.apply {
+            addItemDecoration(divider)
             layoutManager = LinearLayoutManager(activity)
             adapter = attendancesAdapter
         }

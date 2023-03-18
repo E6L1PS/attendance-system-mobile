@@ -1,5 +1,8 @@
 package com.mirea.attsystem.di
 
+import com.mirea.attsystem.data.api.AttendanceApi
+import com.mirea.attsystem.data.api.GateApi
+import com.mirea.attsystem.data.api.PersonApi
 import com.mirea.attsystem.util.Constants
 import dagger.Module
 import dagger.Provides
@@ -32,5 +35,19 @@ class NetworkModule {
         .addConverterFactory(converter)
         .client(client)
         .build()
+
+    @Provides
+    @Singleton
+    fun provideAttendanceApi(retrofit: Retrofit) = retrofit.create(AttendanceApi::class.java)
+
+    @Provides
+    @Singleton
+    fun providePersonApi(retrofit: Retrofit) = retrofit.create(PersonApi::class.java)
+
+    @Provides
+    @Singleton
+    fun provideGateApi(retrofit: Retrofit) = retrofit.create(GateApi::class.java)
+
+
 
 }

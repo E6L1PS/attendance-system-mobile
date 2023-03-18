@@ -1,6 +1,8 @@
 package com.mirea.attsystem.ui.fragment
 
 import android.os.Bundle
+import android.text.Editable
+import android.text.TextWatcher
 import android.util.Log
 import android.view.*
 import androidx.core.view.MenuProvider
@@ -32,9 +34,9 @@ class AddPersonFragment : Fragment(R.layout.fragment_add_person), MenuProvider {
         super.onViewCreated(view, savedInstanceState)
         activity?.addMenuProvider(this, viewLifecycleOwner)
 
-        //val tiEtUid = binding.tiEtUid
+        val tiEtUid = binding.addPerson.tiEtUid
 
-        /*tiEtUid.addTextChangedListener(object : TextWatcher {
+        tiEtUid.addTextChangedListener(object : TextWatcher {
             override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
                 TODO("Not yet implemented")
             }
@@ -47,7 +49,7 @@ class AddPersonFragment : Fragment(R.layout.fragment_add_person), MenuProvider {
                 TODO("Not yet implemented")
             }
 
-        })*/
+        })
 
     }
 

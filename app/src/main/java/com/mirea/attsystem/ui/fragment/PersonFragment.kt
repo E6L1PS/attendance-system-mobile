@@ -23,8 +23,8 @@ import dagger.hilt.android.AndroidEntryPoint
 class PersonFragment : Fragment(R.layout.fragment_person) {
 
     private lateinit var binding: FragmentPersonBinding
-    private val viewModel by viewModels<PersonsViewModel>()
     private lateinit var personAdapter: PersonsAdapter
+    private val viewModel by viewModels<PersonsViewModel>()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,

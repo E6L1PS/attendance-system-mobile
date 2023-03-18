@@ -5,10 +5,14 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.content.ContextCompat
+import androidx.core.content.res.ResourcesCompat
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
+import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.mirea.attsystem.R
 import com.mirea.attsystem.databinding.FragmentAttendanceBinding
 import com.mirea.attsystem.ui.adapter.AttendancesAdapter
@@ -19,10 +23,9 @@ import dagger.hilt.android.AndroidEntryPoint
 @AndroidEntryPoint
 class AttendanceFragment : Fragment(R.layout.fragment_attendance) {
 
-    private val viewModel by viewModels<AttendancesViewModel>()
     private lateinit var binding: FragmentAttendanceBinding
-
     private lateinit var attendancesAdapter: AttendancesAdapter
+    private val viewModel by viewModels<AttendancesViewModel>()
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -75,8 +78,13 @@ class AttendanceFragment : Fragment(R.layout.fragment_attendance) {
     }
 
     private fun setupRecyclerView() {
+        val divider = DividerItemDecoration(context, RecyclerView.VERTICAL)
+        ResourcesCompat.getDrawable(resources, R.drawable.divider, null)?.let {
+            divider.setDrawable(it)
+        }
         attendancesAdapter = AttendancesAdapter()
         binding.rvAttendances.apply {
+            addItemDecoration(divider)
             layoutManager = LinearLayoutManager(activity)
             adapter = attendancesAdapter
         }

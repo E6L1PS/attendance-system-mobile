@@ -19,9 +19,6 @@ class AttendancesViewModel @Inject constructor(
 
     init {
         getAttendances()
-     /*   viewModelScope.launch {
-            attendanceRepository.insertAttendancesToDb(attendances = attendances.value?.data)
-        }*/
     }
 
     val attendancesByUid: MutableLiveData<Resource<List<Attendance>>> = MutableLiveData()
