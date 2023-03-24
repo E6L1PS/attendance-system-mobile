@@ -4,9 +4,11 @@ import com.mirea.attsystem.data.api.AttendanceApi
 import com.mirea.attsystem.data.db.dao.AttendanceDao
 import com.mirea.attsystem.data.db.dao.GateDao
 import com.mirea.attsystem.data.db.dao.PersonDao
+import com.mirea.attsystem.data.dto.DateDTO
 import com.mirea.attsystem.domain.model.Attendance
 import com.mirea.attsystem.domain.repository.AttendanceRepository
 import retrofit2.Response
+import java.time.LocalTime
 import javax.inject.Inject
 import javax.inject.Singleton
 
@@ -24,6 +26,9 @@ class AttendanceRepositoryImpl @Inject constructor(
         insertAttendancesToDb(attendances)
         return response
     }
+
+    override suspend fun getAttendanceTimesByUid(uid: Long): Response<List<String>> = api.getAttendanceTimesByUid(uid)
+    override suspend fun getAllDatesByUid(uid: Long): Response<List<DateDTO>> = api.getAllDatesByUid(uid)
 
     override suspend fun getAttendancesByUid(uid: Long) = api.getAttendancesByUid(uid)
 

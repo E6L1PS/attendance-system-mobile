@@ -104,8 +104,9 @@ class PersonFragment : Fragment(R.layout.fragment_person) {
             }
 
             override fun onPersonInfo(person: Person) {
+               // Navigation.findNavController(view).navigate(R.id.action_navigation_person_to_tabPersonFragment)
 
-                val direction = PersonFragmentDirections.actionNavigationPersonToInfoPersonFragment(person.uid)
+                val direction = PersonFragmentDirections.actionNavigationPersonToTabPersonFragment(person)
                 Navigation.findNavController(view)
                     .navigate(direction)
             }

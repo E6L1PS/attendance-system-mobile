@@ -5,56 +5,49 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.core.content.res.ResourcesCompat
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
-import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.mirea.attsystem.R
-import com.mirea.attsystem.databinding.FragmentInfoPersonBinding
-import com.mirea.attsystem.ui.adapter.AttendancesAdapter
+import com.mirea.attsystem.databinding.FragmentInfoTimePersonBinding
+import com.mirea.attsystem.databinding.FragmentOuterRvBinding
+import com.mirea.attsystem.ui.adapter.infotime.InfoTimePersonAdapter
+import com.mirea.attsystem.ui.adapter.infotime.OuterRecyclerViewAdapter
 import com.mirea.attsystem.ui.view.AttendancesViewModel
 import com.mirea.attsystem.util.Resource
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
-class InfoPersonFragment : Fragment(R.layout.fragment_info_person) {
+class InfoTimePersonFragment : Fragment(R.layout.fragment_outer_rv) {
 
-    private lateinit var binding: FragmentInfoPersonBinding
-    private lateinit var attendancesAdapter: AttendancesAdapter
+    private lateinit var binding: FragmentOuterRvBinding
+    private lateinit var outerRecyclerViewAdapter: OuterRecyclerViewAdapter
     private val viewModel by viewModels<AttendancesViewModel>()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        binding = FragmentInfoPersonBinding.inflate(inflater, container, false)
+        binding = FragmentOuterRvBinding.inflate(inflater, container, false)
         return binding.root
     }
 
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
         setupRecyclerView()
-        viewModel.getAttendancesByUid(getPersonUid())
-        val swipe = binding.srlAttendances
+        viewModel.getAllDatesByUid(this.requireArguments().getLong("arg"))
 
-        swipe.setOnRefreshListener {
-            viewModel.getAttendancesByUid(getPersonUid())
-            swipe.isRefreshing = false
-        }
-
-
-        viewModel.attendancesByUid.observe(viewLifecycleOwner, Observer { response ->
+        viewModel.dates.observe(viewLifecycleOwner, Observer { response ->
 
             when (response) {
                 is Resource.Success -> {
                     //hideProgressBar()
-                    response.data?.let { persons ->
-                        attendancesAdapter.differ.submitList(persons)
+                    response.data?.let { times ->
+                        outerRecyclerViewAdapter.differ.submitList(times)
                     }
                 }
                 is Resource.Error -> {
@@ -68,30 +61,23 @@ class InfoPersonFragment : Fragment(R.layout.fragment_info_person) {
                 }
             }
         })
-
-
     }
 
     private fun setupRecyclerView() {
         val divider = DividerItemDecoration(context, RecyclerView.VERTICAL)
-        ResourcesCompat.getDrawable(resources, R.drawable.divider, null)?.let {
-            divider.setDrawable(it)
-        }
-        attendancesAdapter = AttendancesAdapter()
-        binding.rvInfoPersons.apply {
+        outerRecyclerViewAdapter = OuterRecyclerViewAdapter()
+        binding.rvOuter.apply {
             addItemDecoration(divider)
             layoutManager = LinearLayoutManager(activity)
-            adapter = attendancesAdapter
+            adapter = outerRecyclerViewAdapter
         }
     }
 
-    private fun getPersonUid(): Long = this.arguments?.getLong("arg") ?: throw IllegalAccessException("")
-
     companion object {
-        fun newInstance(arg: Long): InfoPersonFragment {
+        fun newInstance(arg: Long): InfoTimePersonFragment {
             val args = Bundle()
             args.putLong("arg", arg)
-            val fragment = InfoPersonFragment()
+            val fragment = InfoTimePersonFragment()
             fragment.arguments = args
             return fragment
         }

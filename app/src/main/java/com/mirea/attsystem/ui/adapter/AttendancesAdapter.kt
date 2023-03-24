@@ -53,15 +53,16 @@ class AttendancesAdapter : RecyclerView.Adapter<AttendancesAdapter.AttendancesVH
 
             tvDate.text = SimpleDateFormat("yyyy-MM-dd").format(simpleDateFormat)
             tvTime.text = SimpleDateFormat("HH:mm:ss").format(simpleDateFormat)
-            tvGate.text = "Название входа: ${attendance.gate.name}"
             tvLastName.text = attendance.person.lastName
             tvName.text = attendance.person.name
         }
 
         if (attendance.status) {
             holder.itemView.setBackgroundColor(Color.parseColor("#E9FF9B"))
+            holder.binding.tvGate.text = "Проходная: ${attendance.gate.name}(вход)"
         } else {
             holder.itemView.setBackgroundColor(Color.parseColor("#FFB2B2"))
+            holder.binding.tvGate.text = "Проходная: ${attendance.gate.name}(выход)"
         }
 
 

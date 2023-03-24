@@ -36,7 +36,7 @@ class AddPersonFragment : Fragment(R.layout.fragment_add_person), MenuProvider {
 
         val tiEtUid = binding.addPerson.tiEtUid
 
-        tiEtUid.addTextChangedListener(object : TextWatcher {
+      /*  tiEtUid.addTextChangedListener(object : TextWatcher {
             override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
                 TODO("Not yet implemented")
             }
@@ -50,7 +50,7 @@ class AddPersonFragment : Fragment(R.layout.fragment_add_person), MenuProvider {
             }
 
         })
-
+*/
     }
 
 
