@@ -1,14 +1,11 @@
 package com.mirea.attsystem.ui.adapter.infotime
 
-import android.os.Build
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.AsyncListDiffer
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.mirea.attsystem.databinding.ItemTimeAttendanceBinding
-import java.time.LocalDateTime
-import java.time.LocalTime
 
 class InfoTimePersonAdapter : RecyclerView.Adapter<InfoTimePersonAdapter.InfoTimePersonVH>() {
 
@@ -42,9 +39,7 @@ class InfoTimePersonAdapter : RecyclerView.Adapter<InfoTimePersonAdapter.InfoTim
     override fun onBindViewHolder(holder: InfoTimePersonVH, position: Int) {
         val duration = differ.currentList[position]
         with(holder.binding) {
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-                tvTime.text = duration.toString()
-            }
+            tvTime.text = "${position + 1}-е посещение: $duration"
         }
     }
 }

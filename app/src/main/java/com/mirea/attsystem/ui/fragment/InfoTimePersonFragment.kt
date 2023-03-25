@@ -2,12 +2,13 @@ package com.mirea.attsystem.ui.fragment
 
 import android.os.Bundle
 import android.util.Log
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
+import android.view.*
+import androidx.core.content.res.ResourcesCompat
+import androidx.core.view.MenuProvider
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -65,6 +66,9 @@ class InfoTimePersonFragment : Fragment(R.layout.fragment_outer_rv) {
 
     private fun setupRecyclerView() {
         val divider = DividerItemDecoration(context, RecyclerView.VERTICAL)
+        ResourcesCompat.getDrawable(resources, R.drawable.divider_att_date, null)?.let {
+            divider.setDrawable(it)
+        }
         outerRecyclerViewAdapter = OuterRecyclerViewAdapter()
         binding.rvOuter.apply {
             addItemDecoration(divider)
@@ -82,5 +86,6 @@ class InfoTimePersonFragment : Fragment(R.layout.fragment_outer_rv) {
             return fragment
         }
     }
+
 
 }

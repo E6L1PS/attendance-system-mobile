@@ -1,10 +1,10 @@
 package com.mirea.attsystem.ui.fragment
 
 import android.os.Bundle
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
+import android.view.*
+import androidx.core.view.MenuProvider
 import androidx.fragment.app.Fragment
+import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import androidx.viewpager2.widget.ViewPager2
 import androidx.viewpager2.widget.ViewPager2.OnPageChangeCallback
@@ -16,6 +16,7 @@ import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
 class TabPersonFragment : Fragment(R.layout.fragment_tab_layout) {
+
     private lateinit var binding: FragmentTabLayoutBinding
     private lateinit var tabLayout: TabLayout
     private lateinit var viewPager2: ViewPager2
@@ -30,7 +31,6 @@ class TabPersonFragment : Fragment(R.layout.fragment_tab_layout) {
         return binding.root
     }
 
-
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
@@ -39,6 +39,7 @@ class TabPersonFragment : Fragment(R.layout.fragment_tab_layout) {
             viewPager2 = vpPerson
             tvName.text = args.person.name
             tvLastName.text = args.person.lastName
+
         }
 
         adapter =
@@ -72,4 +73,5 @@ class TabPersonFragment : Fragment(R.layout.fragment_tab_layout) {
             }
         })
     }
+
 }

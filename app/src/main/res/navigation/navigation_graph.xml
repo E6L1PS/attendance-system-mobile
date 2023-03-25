@@ -52,7 +52,11 @@
         android:id="@+id/navigation_info_person"
         android:name="com.mirea.attsystem.ui.fragment.InfoPersonFragment"
         android:label="@string/more"
-        tools:layout="@layout/fragment_info_person" />
+        tools:layout="@layout/fragment_info_person" >
+        <action
+            android:id="@+id/action_navigation_info_person_to_navigation_person"
+            app:destination="@id/navigation_person" />
+    </fragment>
     <fragment
         android:id="@+id/tabPersonFragment"
         android:name="com.mirea.attsystem.ui.fragment.TabPersonFragment"
@@ -69,5 +73,9 @@
         android:id="@+id/infoTimePersonFragment"
         android:name="com.mirea.attsystem.ui.fragment.InfoTimePersonFragment"
         android:label="fragment_info_time_person"
-        tools:layout="@layout/fragment_info_time_person" />
+        tools:layout="@layout/fragment_info_time_person" >
+        <action
+            android:id="@+id/action_infoTimePersonFragment_to_navigation_person"
+            app:destination="@id/navigation_person" />
+    </fragment>
 </navigation>

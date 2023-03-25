@@ -5,5 +5,5 @@ import java.time.LocalDate
 
 data class DateDTO(
     val date: String,
-    val list: List<String>
+    val dateTimeList: List<String>
 )

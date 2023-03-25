@@ -6,48 +6,100 @@
     android:layout_height="wrap_content"
     tools:ignore="ExtraText">
 
-    <Button
-        android:id="@+id/btn_date"
+    <androidx.constraintlayout.widget.ConstraintLayout
+
+        android:id="@+id/cl_date"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:background="@color/main_medium"
         android:clickable="true"
         android:focusable="true"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        android:visibility="gone"/>
-
-
-    <TextView
-        android:id="@+id/tv_date"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:textColor="@color/main_black"
-        android:textSize="30dp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:text="2023:06:03" />
-
-    <TextView
-        android:id="@+id/tv_count"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="20dp"
-        android:clickable="true"
-        android:textColor="@color/main_black"
-        android:textSize="30dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@id/tv_date"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:text="4H" />
-    />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <TextView
+            android:id="@+id/tv_date"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="5dp"
+            android:layout_marginBottom="5dp"
+            android:paddingStart="5dp"
+            android:paddingEnd="5dp"
+            android:textColor="@color/main_black"
+            android:textSize="30sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="2023:06:03" />
+
+        <TextView
+            android:id="@+id/tv_count_time"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="5dp"
+            android:layout_marginBottom="5dp"
+            android:paddingStart="5dp"
+            android:paddingEnd="5dp"
+            android:textColor="@color/main_black"
+            android:textSize="24sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toEndOf="@id/tv_date"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="4H" />
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/cl_more_less"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="10dp"
+            android:background="@drawable/rounded_border_less"
+            android:paddingStart="5dp"
+            android:paddingTop="5dp"
+            android:paddingBottom="5dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <TextView
+                android:id="@+id/tv_count_att"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="5dp"
+                android:layout_marginEnd="5dp"
+                android:textColor="@color/main_medium"
+                android:textSize="12sp"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toStartOf="@id/iv_more"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:text="5" />
+
+            <ImageView
+                android:id="@+id/iv_more"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="5dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.859"
+                app:layout_constraintTop_toTopOf="parent"
+                app:srcCompat="@drawable/_26716_less_unfold_icon" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rv_inner"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:visibility="gone"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/tv_date" />
+        app:layout_constraintTop_toBottomOf="@id/cl_date" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
