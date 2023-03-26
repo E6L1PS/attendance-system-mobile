@@ -2,20 +2,17 @@ package com.mirea.attsystem.ui.fragment
 
 import android.os.Bundle
 import android.util.Log
-import android.view.*
+import android.view.View
 import androidx.core.content.res.ResourcesCompat
-import androidx.core.view.MenuProvider
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
-import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import by.kirich1409.viewbindingdelegate.viewBinding
 import com.mirea.attsystem.R
-import com.mirea.attsystem.databinding.FragmentInfoTimePersonBinding
 import com.mirea.attsystem.databinding.FragmentOuterRvBinding
-import com.mirea.attsystem.ui.adapter.infotime.InfoTimePersonAdapter
 import com.mirea.attsystem.ui.adapter.infotime.OuterRecyclerViewAdapter
 import com.mirea.attsystem.ui.view.AttendancesViewModel
 import com.mirea.attsystem.util.Resource
@@ -24,18 +21,9 @@ import dagger.hilt.android.AndroidEntryPoint
 @AndroidEntryPoint
 class InfoTimePersonFragment : Fragment(R.layout.fragment_outer_rv) {
 
-    private lateinit var binding: FragmentOuterRvBinding
     private lateinit var outerRecyclerViewAdapter: OuterRecyclerViewAdapter
     private val viewModel by viewModels<AttendancesViewModel>()
-
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
-        binding = FragmentOuterRvBinding.inflate(inflater, container, false)
-        return binding.root
-    }
-
+    private val binding by viewBinding<FragmentOuterRvBinding>()
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)

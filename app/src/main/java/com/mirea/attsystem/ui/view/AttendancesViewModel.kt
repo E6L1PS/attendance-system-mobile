@@ -1,6 +1,5 @@
 package com.mirea.attsystem.ui.view
 
-import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
@@ -10,8 +9,6 @@ import com.mirea.attsystem.domain.model.Attendance
 import com.mirea.attsystem.util.Resource
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
-import java.time.Duration
-import java.time.LocalTime
 import javax.inject.Inject
 
 @HiltViewModel
@@ -30,16 +27,21 @@ class AttendancesViewModel @Inject constructor(
     val timesByUid: MutableLiveData<Resource<List<String>>> = MutableLiveData()
 
     val dates: MutableLiveData<Resource<List<DateDTO>>> = MutableLiveData()
-    fun getAttendances() = viewModelScope.launch {
-//        persons.postValue(Resource.Loading())
-        val response = attendanceRepository.getAttendances()
-        if (response.isSuccessful) {
-            response.body()?.let { resultResponse ->
-                attendances.postValue(Resource.Success(resultResponse))
+        fun getAttendances() = viewModelScope.launch {
+        try {
+            //        persons.postValue(Resource.Loading())
+            val response = attendanceRepository.getAttendances()
+            if (response.isSuccessful) {
+                response.body()?.let { resultResponse ->
+                    attendances.postValue(Resource.Success(resultResponse))
+                }
+            } else {
+                attendances.postValue(Resource.Error(response.message()))
             }
-        } else {
-            attendances.postValue(Resource.Error(response.message()))
+        } catch (e: Exception) {
+            attendances.postValue(Resource.Error("Ошибка при загрузке данных: ${e.message}"))
         }
+
     }
 
     fun getAttendancesByUid(uid: Long) = viewModelScope.launch {

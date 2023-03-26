@@ -9,6 +9,7 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
+import by.kirich1409.viewbindingdelegate.viewBinding
 import com.mirea.attsystem.R
 import com.mirea.attsystem.databinding.FragmentEditPersonBinding
 import com.mirea.attsystem.domain.model.Person
@@ -18,15 +19,15 @@ import dagger.hilt.android.AndroidEntryPoint
 @AndroidEntryPoint
 class EditPersonFragment : Fragment(R.layout.fragment_edit_person), MenuProvider {
 
-    private lateinit var binding: FragmentEditPersonBinding
     private val viewModel by viewModels<PersonsViewModel>()
+    private val binding by viewBinding<FragmentEditPersonBinding>()
     private val args by navArgs<EditPersonFragmentArgs>()
 
-    override fun onCreateView(
+  /*  override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        binding = FragmentEditPersonBinding.inflate(inflater, container, false)
+
         with(binding.tiEtUid) {
             setText(getPersonUid().toString())
             isEnabled = false
@@ -34,7 +35,7 @@ class EditPersonFragment : Fragment(R.layout.fragment_edit_person), MenuProvider
         }
 
         return binding.root
-    }
+    }*/
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)

@@ -10,6 +10,7 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
 import androidx.navigation.Navigation
 import androidx.recyclerview.widget.LinearLayoutManager
+import by.kirich1409.viewbindingdelegate.viewBinding
 import com.mirea.attsystem.R
 import com.mirea.attsystem.ui.adapter.PersonActionListener
 import com.mirea.attsystem.ui.adapter.PersonsAdapter
@@ -22,17 +23,9 @@ import dagger.hilt.android.AndroidEntryPoint
 @AndroidEntryPoint
 class PersonFragment : Fragment(R.layout.fragment_person) {
 
-    private lateinit var binding: FragmentPersonBinding
     private lateinit var personAdapter: PersonsAdapter
     private val viewModel by viewModels<PersonsViewModel>()
-
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
-        binding = FragmentPersonBinding.inflate(inflater, container, false)
-        return binding.root
-    }
+    private val binding by viewBinding<FragmentPersonBinding>()
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)

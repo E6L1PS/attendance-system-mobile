@@ -48,6 +48,10 @@ android {
 }
 
 dependencies {
+
+    // reflection-based flavor
+    implementation 'com.github.kirich1409:viewbindingpropertydelegate-full:1.5.8'
+
     //hilt
     implementation "com.google.dagger:hilt-android:$hilt_version"
     kapt "com.google.dagger:hilt-compiler:$hilt_version"

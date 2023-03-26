@@ -13,6 +13,7 @@ import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import by.kirich1409.viewbindingdelegate.viewBinding
 import com.mirea.attsystem.R
 import com.mirea.attsystem.databinding.FragmentInfoPersonBinding
 import com.mirea.attsystem.ui.adapter.AttendancesAdapter
@@ -23,17 +24,9 @@ import dagger.hilt.android.AndroidEntryPoint
 @AndroidEntryPoint
 class InfoPersonFragment : Fragment(R.layout.fragment_info_person) {
 
-    private lateinit var binding: FragmentInfoPersonBinding
     private lateinit var attendancesAdapter: AttendancesAdapter
     private val viewModel by viewModels<AttendancesViewModel>()
-
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
-        binding = FragmentInfoPersonBinding.inflate(inflater, container, false)
-        return binding.root
-    }
+    private val binding by viewBinding<FragmentInfoPersonBinding>()
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
