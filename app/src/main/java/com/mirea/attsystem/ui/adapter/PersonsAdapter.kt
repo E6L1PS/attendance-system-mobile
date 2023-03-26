@@ -45,8 +45,10 @@ class PersonsAdapter(private val personActionListener: PersonActionListener) :
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): PersonsVH {
         val binding = ItemPersonBinding.inflate(LayoutInflater.from(parent.context), parent, false)
 
-        binding.root.setOnClickListener(this)
-        binding.icMore.setOnClickListener(this)
+        with(binding) {
+            root.setOnClickListener(this@PersonsAdapter)
+            icMore.setOnClickListener(this@PersonsAdapter)
+        }
 
         return PersonsVH(binding)
     }

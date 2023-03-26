@@ -23,23 +23,15 @@ class EditPersonFragment : Fragment(R.layout.fragment_edit_person), MenuProvider
     private val binding by viewBinding<FragmentEditPersonBinding>()
     private val args by navArgs<EditPersonFragmentArgs>()
 
-  /*  override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        activity?.addMenuProvider(this, viewLifecycleOwner)
 
         with(binding.tiEtUid) {
             setText(getPersonUid().toString())
             isEnabled = false
             setTextColor(Color.GRAY)
         }
-
-        return binding.root
-    }*/
-
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
-        activity?.addMenuProvider(this, viewLifecycleOwner)
 
     }
 
@@ -73,6 +65,5 @@ class EditPersonFragment : Fragment(R.layout.fragment_edit_person), MenuProvider
     }
 
     private fun getPersonUid(): Long = args.uid
-
 
 }
