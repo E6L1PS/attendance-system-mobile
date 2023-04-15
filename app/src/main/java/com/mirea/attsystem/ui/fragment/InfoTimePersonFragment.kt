@@ -1,12 +1,11 @@
 package com.mirea.attsystem.ui.fragment
 
 import android.os.Bundle
-import android.util.Log
 import android.view.View
 import androidx.core.content.res.ResourcesCompat
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
-import androidx.lifecycle.Observer
+import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -17,6 +16,9 @@ import com.mirea.attsystem.ui.adapter.infotime.OuterRecyclerViewAdapter
 import com.mirea.attsystem.ui.view.AttendancesViewModel
 import com.mirea.attsystem.util.Resource
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.flow.collect
+import kotlinx.coroutines.flow.onEach
+import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
 class InfoTimePersonFragment : Fragment(R.layout.fragment_outer_rv) {
@@ -30,26 +32,23 @@ class InfoTimePersonFragment : Fragment(R.layout.fragment_outer_rv) {
         setupRecyclerView()
         viewModel.getAllDatesByUid(this.requireArguments().getLong("arg"))
 
-        viewModel.dates.observe(viewLifecycleOwner, Observer { response ->
+        viewLifecycleOwner.lifecycleScope.launch {
+            viewModel.dates.onEach {
+                when (it) {
+                    is Resource.Success -> {
+                        outerRecyclerViewAdapter.differ.submitList(it.data)
+                    }
 
-            when (response) {
-                is Resource.Success -> {
-                    //hideProgressBar()
-                    response.data?.let { times ->
-                        outerRecyclerViewAdapter.differ.submitList(times)
+                    is Resource.Loading -> {
+
+                    }
+
+                    is Resource.Error -> {
+
                     }
                 }
-                is Resource.Error -> {
-                    // hideProgressBar()
-                    response.message?.let { message ->
-                        Log.e("PERSON_MESSAGE", message)
-                    }
-                }
-                is Resource.Loading -> {
-                    // showProgressBar()
-                }
-            }
-        })
+            }.collect()
+        }
     }
 
     private fun setupRecyclerView() {

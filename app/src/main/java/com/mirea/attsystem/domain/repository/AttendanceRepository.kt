@@ -2,16 +2,15 @@ package com.mirea.attsystem.domain.repository
 
 import com.mirea.attsystem.data.dto.DateDTO
 import com.mirea.attsystem.domain.model.Attendance
-import retrofit2.Response
-import java.time.Duration
-import java.time.LocalTime
+import com.mirea.attsystem.util.Resource
+import kotlinx.coroutines.flow.Flow
 
 interface AttendanceRepository {
 
-    suspend fun getAttendances(): Response<List<Attendance>>
+    suspend fun getAttendances(): Flow<Resource<List<Attendance>?>>
 
-    suspend fun getAttendancesByUid(uid: Long): Response<List<Attendance>>
+    suspend fun getAttendancesByUid(uid: Long): Flow<Resource<List<Attendance>?>>
 
-    suspend fun getAllDatesByUid(uid: Long): Response<List<DateDTO>>
+    suspend fun getAllDatesByUid(uid: Long): Flow<Resource<List<DateDTO>?>>
 
 }

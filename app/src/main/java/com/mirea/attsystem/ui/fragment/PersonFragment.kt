@@ -8,6 +8,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
+import androidx.lifecycle.lifecycleScope
 import androidx.navigation.Navigation
 import androidx.recyclerview.widget.LinearLayoutManager
 import by.kirich1409.viewbindingdelegate.viewBinding
@@ -19,6 +20,9 @@ import com.mirea.attsystem.domain.model.Person
 import com.mirea.attsystem.ui.view.PersonsViewModel
 import com.mirea.attsystem.util.Resource
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.flow.collect
+import kotlinx.coroutines.flow.onEach
+import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
 class PersonFragment : Fragment(R.layout.fragment_person) {
@@ -37,7 +41,24 @@ class PersonFragment : Fragment(R.layout.fragment_person) {
 
         setupRecyclerView(view)
 
-        call()
+        viewLifecycleOwner.lifecycleScope.launch {
+            viewModel.persons.onEach {
+                when (it) {
+                    is Resource.Success -> {
+                        personAdapter.differ.submitList(it.data)
+                        hideProgressBar()
+                    }
+
+                    is Resource.Loading -> {
+                        showProgressBar()
+                    }
+
+                    is Resource.Error -> {
+                        hideProgressBar()
+                    }
+                }
+            }.collect()
+        }
 
         val swipe = binding.srlPersons
         swipe.setOnRefreshListener {
@@ -51,28 +72,7 @@ class PersonFragment : Fragment(R.layout.fragment_person) {
          }*/
     }
 
-    fun call() {
-        viewModel.persons.observe(viewLifecycleOwner, Observer { response ->
 
-            when (response) {
-                is Resource.Success -> {
-                    hideProgressBar()
-                    response.data?.let { persons ->
-                        personAdapter.differ.submitList(persons)
-                    }
-                }
-                is Resource.Error -> {
-                    hideProgressBar()
-                    response.message?.let { message ->
-                        Log.e("PERSON_MESSAGE", message)
-                    }
-                }
-                is Resource.Loading -> {
-                    showProgressBar()
-                }
-            }
-        })
-    }
 
     private fun hideProgressBar() {
         binding.progressBar.visibility = View.INVISIBLE
