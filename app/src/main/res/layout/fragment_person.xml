@@ -27,7 +27,7 @@
             android:layout_height="wrap_content"
             android:backgroundTint="@color/main_black"
             android:text="@string/button_add"
-            android:textColor="@color/material_dynamic_neutral70"
+            android:textColor="@color/gray"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent" />

@@ -45,16 +45,18 @@ class EditPersonFragment : Fragment(R.layout.fragment_edit_person), MenuProvider
             R.id.apply -> {
                 with(binding) {
                     val person = Person(
-                        tiEtUid.text.toString().toLong(),
-                        tiEtName.text.toString(),
-                        tiEtLastName.text.toString(),
-                        tiEtJobTitle.text.toString(),
-                        when (rgGender.checkedRadioButtonId) {
+                        uid = tiEtUid.text.toString().toLong(),
+                        name = tiEtName.text.toString(),
+                        lastName = tiEtLastName.text.toString(),
+                        jobTitle = tiEtJobTitle.text.toString(),
+                        number = tiEtNumber.text.toString(),
+                        gender = when (rgGender.checkedRadioButtonId) {
                             R.id.rb_man -> 'M'
                             R.id.rb_woman -> 'W'
                             else -> 'M'
                         }
                     )
+
                     Log.d("bApplyLog", person.toString())
                     viewModel.updatePerson(person)
                 }

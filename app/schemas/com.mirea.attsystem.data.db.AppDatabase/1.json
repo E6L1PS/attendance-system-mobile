@@ -2,11 +2,11 @@
   "formatVersion": 1,
   "database": {
     "version": 1,
-    "identityHash": "cb122c9291e46e7a3538fb91e091367d",
+    "identityHash": "4f61eeb291ce32847d77b1c7b654f9a7",
     "entities": [
       {
         "tableName": "attendance",
-        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`id` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `person_id` INTEGER NOT NULL, `gate_id` INTEGER NOT NULL, `status` INTEGER NOT NULL, `date` TEXT NOT NULL)",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`id` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `person_id` INTEGER NOT NULL, `gate_id` INTEGER NOT NULL, `status` INTEGER NOT NULL, `date` TEXT NOT NULL, FOREIGN KEY(`person_id`) REFERENCES `person`(`uid`) ON UPDATE CASCADE ON DELETE CASCADE , FOREIGN KEY(`gate_id`) REFERENCES `gate`(`id`) ON UPDATE CASCADE ON DELETE CASCADE )",
         "fields": [
           {
             "fieldPath": "id",
@@ -46,7 +46,30 @@
           ]
         },
         "indices": [],
-        "foreignKeys": []
+        "foreignKeys": [
+          {
+            "table": "person",
+            "onDelete": "CASCADE",
+            "onUpdate": "CASCADE",
+            "columns": [
+              "person_id"
+            ],
+            "referencedColumns": [
+              "uid"
+            ]
+          },
+          {
+            "table": "gate",
+            "onDelete": "CASCADE",
+            "onUpdate": "CASCADE",
+            "columns": [
+              "gate_id"
+            ],
+            "referencedColumns": [
+              "id"
+            ]
+          }
+        ]
       },
       {
         "tableName": "gate",
@@ -122,7 +145,7 @@
     "views": [],
     "setupQueries": [
       "CREATE TABLE IF NOT EXISTS room_master_table (id INTEGER PRIMARY KEY,identity_hash TEXT)",
-      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, 'cb122c9291e46e7a3538fb91e091367d')"
+      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, '4f61eeb291ce32847d77b1c7b654f9a7')"
     ]
   }
 }

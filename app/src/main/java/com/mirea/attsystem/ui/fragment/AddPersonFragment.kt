@@ -4,7 +4,10 @@ import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
 import android.util.Log
-import android.view.*
+import android.view.Menu
+import android.view.MenuInflater
+import android.view.MenuItem
+import android.view.View
 import androidx.core.view.MenuProvider
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
@@ -15,6 +18,7 @@ import com.mirea.attsystem.databinding.FragmentAddPersonBinding
 import com.mirea.attsystem.domain.model.Person
 import com.mirea.attsystem.ui.view.PersonsViewModel
 import dagger.hilt.android.AndroidEntryPoint
+
 
 @AndroidEntryPoint
 class AddPersonFragment : Fragment(R.layout.fragment_add_person), MenuProvider {
@@ -27,24 +31,9 @@ class AddPersonFragment : Fragment(R.layout.fragment_add_person), MenuProvider {
         activity?.addMenuProvider(this, viewLifecycleOwner)
 
         val tiEtUid = binding.addPerson.tiEtUid
+        val tiEtNumber = binding.addPerson.tiEtNumber
 
-      /*  tiEtUid.addTextChangedListener(object : TextWatcher {
-            override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
-                TODO("Not yet implemented")
-            }
-
-            override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
-                TODO("Not yet implemented")
-            }
-
-            override fun afterTextChanged(p0: Editable?) {
-                TODO("Not yet implemented")
-            }
-
-        })
-*/
     }
-
 
     override fun onCreateMenu(menu: Menu, menuInflater: MenuInflater) {
         menuInflater.inflate(R.menu.add_person_menu, menu)
@@ -56,11 +45,12 @@ class AddPersonFragment : Fragment(R.layout.fragment_add_person), MenuProvider {
             R.id.apply -> {
                 with(binding.addPerson) {
                     val person = Person(
-                        tiEtUid.text.toString().toLong(),
-                        tiEtName.text.toString(),
-                        tiEtLastName.text.toString(),
-                        tiEtJobTitle.text.toString(),
-                        when (rgGender.checkedRadioButtonId) {
+                        uid = tiEtUid.text.toString().toLong(),
+                        name = tiEtName.text.toString(),
+                        lastName = tiEtLastName.text.toString(),
+                        jobTitle = tiEtJobTitle.text.toString(),
+                        number = tiEtNumber.text.toString(),
+                        gender = when (rgGender.checkedRadioButtonId) {
                             R.id.rb_man -> 'M'
                             R.id.rb_woman -> 'W'
                             else -> 'M'
@@ -75,5 +65,4 @@ class AddPersonFragment : Fragment(R.layout.fragment_add_person), MenuProvider {
         }
         return true
     }
-
 }

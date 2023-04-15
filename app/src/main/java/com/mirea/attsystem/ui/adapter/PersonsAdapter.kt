@@ -66,7 +66,7 @@ class PersonsAdapter(private val personActionListener: PersonActionListener) :
             tvName.text = person.name
             tvLastName.text = person.lastName
             tvJobTitle.text = person.jobTitle
-            tvGender.text = if (person.gender == 'M') "Мужчина" else "Женщина"
+            tvNumber.text = person.number
         }
     }
 

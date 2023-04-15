@@ -39,15 +39,15 @@ class NetworkModule {
 
     @Provides
     @Singleton
-    fun provideAttendanceApi(retrofit: Retrofit) = retrofit.create(AttendanceApi::class.java)
+    fun provideAttendanceApi(retrofit: Retrofit): AttendanceApi = retrofit.create(AttendanceApi::class.java)
 
     @Provides
     @Singleton
-    fun providePersonApi(retrofit: Retrofit) = retrofit.create(PersonApi::class.java)
+    fun providePersonApi(retrofit: Retrofit): PersonApi = retrofit.create(PersonApi::class.java)
 
     @Provides
     @Singleton
-    fun provideGateApi(retrofit: Retrofit) = retrofit.create(GateApi::class.java)
+    fun provideGateApi(retrofit: Retrofit): GateApi = retrofit.create(GateApi::class.java)
 
 
 }

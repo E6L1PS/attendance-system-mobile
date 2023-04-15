@@ -56,19 +56,6 @@ class AttendancesViewModel @Inject constructor(
         }
     }
 
-    fun getTimesByUid(uid: Long) = viewModelScope.launch {
-//        persons.postValue(Resource.Loading())
-        val response = attendanceRepository.getAttendanceTimesByUid(uid)
-        if (response.isSuccessful) {
-            response.body()?.let { resultResponse ->
-                timesByUid.postValue(Resource.Success(resultResponse))
-            }
-        } else {
-            timesByUid.postValue(Resource.Error(response.message()))
-        }
-    }
-
-
     fun getAllDatesByUid(uid: Long) = viewModelScope.launch {
 //        persons.postValue(Resource.Loading())
         val response = attendanceRepository.getAllDatesByUid(uid)

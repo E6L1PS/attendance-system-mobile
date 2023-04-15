@@ -18,4 +18,5 @@
     <string name="attendances">Посещения</string>
     <string name="man">Мужчина</string>
     <string name="woman">Женщина</string>
+    <string name="number">Номер телефона</string>
 </resources>

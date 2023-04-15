@@ -12,8 +12,6 @@ interface AttendanceRepository {
 
     suspend fun getAttendancesByUid(uid: Long): Response<List<Attendance>>
 
-    suspend fun getAttendanceTimesByUid(uid: Long): Response<List<String>>
-
     suspend fun getAllDatesByUid(uid: Long): Response<List<DateDTO>>
 
 }
