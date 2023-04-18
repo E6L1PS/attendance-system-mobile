@@ -19,4 +19,6 @@
     <string name="man">Мужчина</string>
     <string name="woman">Женщина</string>
     <string name="number">Номер телефона</string>
+    <string name="gates">Проходные</string>
+    <string name="enter_gate_name">Введите название проходной</string>
 </resources>

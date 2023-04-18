@@ -7,16 +7,16 @@ import retrofit2.http.*
 
 interface PersonApi {
 
-    @GET("person/all")
+    @GET("api/v1/person")
     suspend fun getPersons(): Response<List<Person>>
 
-    @POST("person/add")
+    @POST("api/v1/person")
     suspend fun addPerson(@Body person: Person)
 
-    @DELETE("person/delete/{uid}")
-    suspend fun deletePerson(@Path("uid") uid: Long)
-
-    @PUT("person/update")
+    @PUT("api/v1/person")
     suspend fun updatePerson(@Body person: Person)
+
+    @DELETE("api/v1/person/{uid}")
+    suspend fun deletePerson(@Path("uid") uid: Long)
 
 }

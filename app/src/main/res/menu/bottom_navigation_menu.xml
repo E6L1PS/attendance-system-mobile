@@ -14,5 +14,10 @@
         android:title="@string/persons_title"
         app:showAsAction="ifRoom"/>
 
+    <item
+        android:id="@+id/navigation_gate"
+        android:icon="@drawable/ic_gate"
+        android:title="@string/gates"
+        app:showAsAction="ifRoom"/>
 
 </menu>

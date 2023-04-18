@@ -1,7 +1,7 @@
 package com.mirea.attsystem.data.repository
 
 import com.mirea.attsystem.data.api.AttendanceApi
-import com.mirea.attsystem.data.dto.DateDTO
+import com.mirea.attsystem.domain.model.DateDTO
 import com.mirea.attsystem.domain.model.Attendance
 import com.mirea.attsystem.domain.repository.AttendanceRepository
 import com.mirea.attsystem.util.Resource
@@ -10,7 +10,6 @@ import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.catch
 import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.flow.flowOn
-import retrofit2.Response
 import javax.inject.Inject
 import javax.inject.Singleton
 
