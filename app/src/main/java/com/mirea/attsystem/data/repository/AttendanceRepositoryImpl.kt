@@ -62,4 +62,8 @@ class AttendanceRepositoryImpl @Inject constructor(
     }.catch { exception ->
         emit(Resource.error(exception.message ?: "Error occurred", null))
     }.flowOn(Dispatchers.IO)
+
+    override suspend fun deleteAll() {
+        api.deleteAll()
+    }
 }

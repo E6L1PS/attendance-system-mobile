@@ -1,6 +1,5 @@
 package com.mirea.attsystem.data.repository
 
-import android.util.Log
 import com.mirea.attsystem.data.api.PersonApi
 import com.mirea.attsystem.domain.model.Person
 import com.mirea.attsystem.domain.repository.PersonRepository
@@ -10,7 +9,6 @@ import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.catch
 import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.flow.flowOn
-import retrofit2.Response
 import javax.inject.Inject
 import javax.inject.Singleton
 

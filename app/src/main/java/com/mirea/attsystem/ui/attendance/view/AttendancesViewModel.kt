@@ -45,4 +45,9 @@ class AttendancesViewModel @Inject constructor(
         _dates.emitAll(attendanceRepository.getAllDatesByUid(uid))
     }
 
+    fun deleteAll() = viewModelScope.launch {
+        attendanceRepository.deleteAll()
+        getAttendances()
+    }
+
 }

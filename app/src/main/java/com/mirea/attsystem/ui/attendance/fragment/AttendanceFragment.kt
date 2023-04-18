@@ -1,8 +1,14 @@
 package com.mirea.attsystem.ui.attendance.fragment
 
 import android.os.Bundle
+import android.util.Log
+import android.view.Menu
+import android.view.MenuInflater
+import android.view.MenuItem
+import android.view.MenuItem.OnMenuItemClickListener
 import android.view.View
 import androidx.core.content.res.ResourcesCompat
+import androidx.core.view.MenuProvider
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
@@ -21,7 +27,7 @@ import kotlinx.coroutines.flow.onEach
 import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
-class AttendanceFragment : Fragment(R.layout.fragment_attendance) {
+class AttendanceFragment : Fragment(R.layout.fragment_attendance), MenuProvider {
 
     private lateinit var attendancesAdapter: AttendancesAdapter
     private val viewModel by viewModels<AttendancesViewModel>()
@@ -29,6 +35,7 @@ class AttendanceFragment : Fragment(R.layout.fragment_attendance) {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        requireActivity().addMenuProvider(this, viewLifecycleOwner)
 
         setupRecyclerView()
 
@@ -80,5 +87,21 @@ class AttendanceFragment : Fragment(R.layout.fragment_attendance) {
             layoutManager = LinearLayoutManager(activity)
             adapter = attendancesAdapter
         }
+    }
+
+    override fun onCreateMenu(menu: Menu, menuInflater: MenuInflater) {
+        menuInflater.inflate(R.menu.attendance_menu, menu)
+    }
+
+    override fun onMenuItemSelected(menuItem: MenuItem): Boolean {
+        when (menuItem.itemId) {
+            R.id.ic_clear -> {
+               viewModel.deleteAll()
+            }
+            else -> {
+
+            }
+        }
+        return true
     }
 }

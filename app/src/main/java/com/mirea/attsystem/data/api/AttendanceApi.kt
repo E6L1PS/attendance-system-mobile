@@ -3,6 +3,7 @@ package com.mirea.attsystem.data.api
 import com.mirea.attsystem.domain.model.DateDTO
 import com.mirea.attsystem.domain.model.Attendance
 import retrofit2.Response
+import retrofit2.http.DELETE
 import retrofit2.http.GET
 import retrofit2.http.Path
 
@@ -16,6 +17,7 @@ interface AttendanceApi {
     
     @GET("api/v1/attendance/dates/{uid}")
     suspend fun getAllIntervalsByUid(@Path("uid") uid: Long): Response<List<DateDTO>>
-    
-    
+
+    @DELETE("api/v1/attendance")
+    suspend fun deleteAll()
 }

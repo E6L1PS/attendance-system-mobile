@@ -13,4 +13,6 @@ interface AttendanceRepository {
 
     suspend fun getAllDatesByUid(uid: Long): Flow<Resource<List<DateDTO>?>>
 
+    suspend fun deleteAll()
+
 }
